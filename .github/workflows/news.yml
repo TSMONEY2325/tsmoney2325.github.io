@@ -1,0 +1,39 @@
+name: 전자어음 뉴스 자동 수집
+
+on:
+  schedule:
+    # 매주 월요일 오전 9시 (KST) = UTC 00:00
+    - cron: '0 0 * * 1'
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  fetch-news:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: 레포지토리 체크아웃
+        uses: actions/checkout@v4
+      
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: 패키지 설치
+        run: pip install anthropic
+      
+      - name: 뉴스 수집 및 페이지 생성
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/fetch_news.py
+      
+      - name: 변경사항 커밋 및 푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add news/
+          git diff --staged --quiet || git commit -m "뉴스 자동 업데이트 $(date '+%Y-%m-%d')"
+          git push
