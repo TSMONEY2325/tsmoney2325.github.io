@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전자어음할인 수수료 계산기 — 실수령액·할인료 즉시 계산 | 태성투자대부</title>
+<meta name="description" content="전자어음할인 수수료와 실수령액을 무료로 즉시 계산하세요. 어음금액·월할인율·만기일 입력만으로 할인료와 실수령액을 바로 확인. 남은 일수 또는 만기일 직접 입력 가능. 계산식: 금액 × 월할인율(%) × 일수 ÷ 30. 국내 유일 전자어음 전용 수수료 계산기. ☎ 02-999-2325">
+<meta name="keywords" content="전자어음할인계산기,어음할인수수료계산기,전자어음실수령액계산,어음할인율계산기,전자어음할인료계산,전자어음할인수수료계산,어음할인이자계산기,전자어음만기일계산,어음할인금액계산,전자어음할인금리계산,어음할인실수령액,전자어음수수료계산,어음할인비용계산,전자어음이자계산,어음할인계산방법,전자어음할인계산공식,어음할인율계산방법,전자어음할인금액계산기,전자어음할인무료계산기,어음할인만기일계산기,전자어음할인월할인율계산,어음할인수수료얼마,전자어음할인실수령액얼마,어음할인료계산방법,전자어음할인수수료율,어음할인이자율계산,전자어음할인비용계산기,어음할인금리계산기,전자어음할인일수계산,어음할인금액실수령">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tsmoney2325.github.io/calculator/">
+<meta property="og:title" content="전자어음할인 수수료 계산기 — 실수령액 즉시 계산">
+<meta property="og:description" content="어음금액·할인율·만기일 입력만으로 수수료와 실수령액을 즉시 계산. 국내 유일 전자어음 전용 무료 계산기.">
+<meta property="og:url" content="https://tsmoney2325.github.io/calculator/">
+<meta property="og:image" content="https://tsmoney2325.github.io/assets/calculator.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tsmoney2325.github.io/assets/calculator.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1B3A6B;--gm:#16336B;--gl:#1A56C4;--gp:#E8F0FB;--a:#E8B800;--al:#FEE500;--w:#fff;--off:#F6F3EE;--st:#EAE5DC;--g2:#DDD8CF;--g4:#A5A09A;--g6:#6A6560;--text:#1A1714;--serif:'Nanum Myeongjo',Georgia,serif;--sans:'Pretendard','Apple SD Gothic Neo',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--off);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--off)}::-webkit-scrollbar-thumb{background:var(--gm);border-radius:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:var(--g);border-bottom:2px solid rgba(201,148,58,.3);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-mark{width:44px;height:44px;border-radius:9px;overflow:hidden;background:var(--w);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;gap:1px}.logo-name{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--w);letter-spacing:.01em;line-height:1.2}.logo-reg{font-size:12px;font-weight:500;color:rgba(255,255,255,.72);letter-spacing:.01em;line-height:1}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.82);text-decoration:none;padding:7px 13px;border-radius:8px;display:flex;align-items:center;gap:5px;transition:color .18s,background .18s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.on{color:var(--al);background:rgba(255,255,255,.08)}
+.nav-links a.on{font-weight:700;color:var(--al)}
+.nav-r{display:flex;align-items:center;gap:9px}
+.nav-tel{font-size:15px;font-weight:700;color:var(--al);text-decoration:none;letter-spacing:.02em;white-space:nowrap}
+.btn-kko{background:#FEE500;color:#3C1E1E;font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:transform .15s,box-shadow .15s}
+.btn-kko:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(254,229,0,.5)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
+.hbg span{display:block;width:22px;height:2px;background:var(--w);border-radius:2px}
+.mob{display:none;position:fixed;top:72px;left:0;right:0;z-index:499;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--g2);padding:14px 5vw 18px;flex-direction:column;gap:4px}
+.mob.open{display:flex}
+.mob a{font-size:15px;font-weight:500;color:var(--text);text-decoration:none;padding:11px 14px;border-radius:10px;transition:background .18s}
+.mob a:hover{background:var(--gp);color:var(--g)}
+.mob .m-tel{margin-top:10px;padding:13px;background:var(--g);border-radius:12px;color:var(--al);font-family:var(--serif);font-size:18px;font-weight:800;text-align:center}
+.mob .m-kko{background:#FEE500;color:#3C1E1E;font-weight:700;font-size:13px;padding:12px;border-radius:12px;text-align:center}
+.pw{padding-top:72px;min-height:100vh}
+.ch{background:var(--g);padding:52px 5vw 0;text-align:center}
+.chi{max-width:600px;margin:0 auto}
+.cey{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin-bottom:13px;display:flex;align-items:center;justify-content:center;gap:10px}
+.cey::before,.cey::after{content:'';width:14px;height:1px;background:var(--a)}
+.ch h1{font-family:var(--serif);font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--w);line-height:1.2;letter-spacing:-.025em;margin-bottom:12px}
+.ch h1 em{font-style:normal;color:var(--al)}
+.ch p{font-size:14px;color:rgba(255,255,255,.52);line-height:1.85;padding-bottom:42px}
+.cs{padding:0 5vw 72px}
+.cc{max-width:700px;margin:-34px auto 0;background:var(--w);border-radius:20px;box-shadow:0 18px 56px rgba(12,53,38,.13);overflow:hidden}
+.cb{padding:34px 38px}
+.mtog{display:flex;background:var(--off);border:1.5px solid var(--g2);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.mb{flex:1;padding:10px;font-size:13px;font-weight:600;border:none;background:transparent;color:var(--g6);cursor:pointer;transition:background .2s,color .2s;font-family:var(--sans)}
+.mb.on{background:var(--g);color:var(--w)}
+.ig{display:flex;flex-direction:column;gap:20px;margin-bottom:22px}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:13px;font-weight:600;color:var(--text)}
+.f label span{font-size:11px;font-weight:400;color:var(--g4);margin-left:4px}
+.iw{position:relative}
+.iw input[type=number]{width:100%;padding:12px 44px 12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:16px;font-weight:600;font-family:var(--sans);color:transparent;caret-color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;-moz-appearance:textfield}
+.iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
+.rate-input{color:var(--text)!important;caret-color:var(--text)!important}
+.iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
+.iw input[type=date]:focus{border-color:var(--g);background:var(--w)}
+.ov{position:absolute;top:0;left:0;right:44px;bottom:0;padding:12px 15px;font-size:16px;font-weight:600;color:var(--text);pointer-events:none;display:flex;align-items:center;overflow:hidden}
+.unit{position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:var(--g4);pointer-events:none}
+.fh{font-size:11px;color:var(--g4);margin-top:3px}
+.fh.err{color:#E24B4A}
+.df{display:none}
+.df.show{display:block}
+.dayf.hide{display:none}
+.cbtn{width:100%;padding:14px;background:var(--g);color:var(--w);font-size:16px;font-weight:700;font-family:var(--sans);border:none;border-radius:12px;cursor:pointer;transition:background .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.cbtn:hover{background:var(--gm);transform:translateY(-2px)}
+.res{margin-top:22px;border-radius:14px;overflow:hidden;border:1.5px solid var(--g2);display:none}
+.res.show{display:block}
+.rt{background:var(--g);padding:24px 28px;display:grid;grid-template-columns:1fr 1fr}
+.rm{border-right:1px solid rgba(255,255,255,.12);padding-right:24px}
+.rs{padding-left:24px}
+.rl{font-size:11px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:7px}
+.rv2{font-family:var(--serif);font-size:28px;font-weight:800;color:var(--al);line-height:1.1;letter-spacing:-.02em}
+.rv2.fee{font-size:22px;color:rgba(255,255,255,.85)}
+.rd{background:var(--gp);padding:14px 28px;display:flex;gap:16px;flex-wrap:wrap}
+.rc{font-size:12px;color:var(--gm)}
+.rc strong{font-weight:700;color:var(--g)}
+/* 유의사항 박스 */
+.info-box{max-width:700px;margin:18px auto 0;background:var(--w);border-radius:14px;padding:20px 24px;border:1px solid var(--st)}
+.ibt{font-size:14px;font-weight:700;color:var(--g);margin-bottom:8px}
+.ibd{font-size:13px;color:var(--g6);line-height:1.8}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:none}
+.ctastrip{max-width:700px;margin:16px auto 0;background:var(--g);border-radius:14px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ctastrip strong{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--w);display:block;margin-bottom:3px}
+.ctastrip span{font-size:13px;color:rgba(255,255,255,.5)}
+.ctastrip-btns{display:flex;gap:9px;flex-wrap:wrap}
+.btn-a{display:inline-flex;align-items:center;gap:7px;background:var(--a);color:var(--g);font-size:14px;font-weight:700;padding:13px 22px;border-radius:10px;text-decoration:none;transition:background .2s}
+.btn-a:hover{background:var(--al)}
+@media(max-width:860px){.nav-links{display:none}.hbg{display:flex}.nav-tel{display:none}}
+@media(max-width:640px){
+  .cb{padding:24px 20px}
+  .rt{grid-template-columns:1fr}
+  .rm{border-right:none;padding-right:0;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:18px;margin-bottom:18px}
+  .rs{padding-left:0}
+  .ctastrip{flex-direction:column;text-align:center}
+    }
+footer{background:#06100E;padding:36px 5vw 28px}
+.ft-wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+.ft-legal{font-size:11px;color:rgba(255,255,255,.55);line-height:2.1}
+
+.ft-nav{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0}
+.ft-nav a{font-size:13px;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;white-space:nowrap}
+.ft-nav a:hover{color:var(--al)}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a class="logo" href="/"><div class="logo-mark"><img src="/assets/logo.jpg" alt="태성투자대부 로고" style="width:42px;height:42px;object-fit:contain;display:block;"></div><span class="logo-text"><span class="logo-name">태성투자대부</span><span class="logo-reg">대부업 2019-서울중구-0048</span></span></a>
+  <ul class="nav-links">
+    <li><a href="/">📑 전자어음할인</a></li>
+    <li><a href="/calculator/" class="on">📉 수수료 계산기</a></li>
+    <li><a href="/possible/">📋 할인 가능 목록</a></li>
+    <li><a href="/corporate/">🏢 기업금융</a></li>
+  </ul>
+  <div class="nav-r">
+    <a class="nav-tel" href="tel:02-999-2325">02-999-2325</a>
+    <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오 상담</a>
+    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob" id="mob">
+  <a href="/">📑 전자어음할인</a><a href="/calculator/">📉 수수료 계산기</a>
+  <a href="/possible/">📋 할인 가능 목록</a><a href="/corporate/">🏢 기업금융</a>
+  <a class="m-tel" href="tel:02-999-2325">📞 02-999-2325</a>
+  <a class="m-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오톡 상담하기</a>
+</div>
+
+<div class="pw">
+  <div class="ch">
+    <div class="chi">
+      <div class="cey">Free Calculator</div>
+      <h1>전자어음할인<br><em>수수료 계산기</em></h1>
+      <p>어음금액·할인율·만기일만 입력하면 수수료와 실수령액을 즉시 계산합니다.</p>
+    </div>
+  </div>
+  <div class="cs">
+    <div class="cc">
+      <div class="cb">
+        <div class="mtog">
+          <button class="mb on" id="btn-days" onclick="setMode('days')">📅 남은 일수로 계산</button>
+          <button class="mb" id="btn-date" onclick="setMode('date')">📆 만기일로 계산</button>
+        </div>
+        <div class="ig">
+          <div class="f">
+            <label>할인할 전자어음 금액 <span>(원 단위)</span></label>
+            <div class="iw">
+              <input type="number" id="amt-raw" placeholder="예: 50000000" min="0" oninput="updateAmt();calc()">
+              <div class="ov" id="amt-ov"></div>
+              <span class="unit">원</span>
+            </div>
+            <div class="fh" id="amt-hint"></div>
+          </div>
+          <div class="f">
+            <label>월 할인율</label>
+            <div class="iw">
+              <input type="number" id="rate" class="rate-input" placeholder="예: 0.7" step="0.1" min="0" max="20" oninput="calc()">
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="f dayf" id="df-days">
+            <label>만기일까지 남은 일수</label>
+            <div class="iw">
+              <input type="number" id="days-raw" placeholder="예: 60" min="1" max="365" oninput="updateDays();calc()">
+              <div class="ov" id="days-ov"></div>
+              <span class="unit">일</span>
+            </div>
+            <div class="fh">어음 만기일까지 실제 남은 날짜</div>
+          </div>
+          <div class="f df" id="df-date">
+            <label>어음 만기일</label>
+            <div class="iw"><input type="date" id="mdate" onchange="calcDate()"></div>
+            <div class="fh" id="days-info">날짜를 선택하면 일수가 자동 계산됩니다</div>
+          </div>
+        </div>
+        <button class="cbtn" onclick="calc()">📊 수수료 및 실수령액 계산하기</button>
+        <div class="res" id="res">
+          <div class="rt">
+            <div class="rm"><div class="rl">실수령액</div><div class="rv2" id="r-net"></div></div>
+            <div class="rs"><div class="rl">할인 수수료</div><div class="rv2 fee" id="r-fee"></div></div>
+          </div>
+          <div class="rd">
+            <span class="rc">어음금액 <strong id="c-amt">-</strong></span>
+            <span class="rc">월 할인율 <strong id="c-rate">-</strong></span>
+            <span class="rc">남은 일수 <strong id="c-days">-</strong></span>
+            <span class="rc">계산식 <strong>금액 × 월할인율(%) × 일수 ÷ 30</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 계산 공식 안내만 유지, 법적 고지는 footer로 이동 -->
+    <div class="info-box rv">
+      <div class="ibt">💡 계산 공식 안내</div>
+      <div class="ibd">
+        <strong>할인수수료 = 금액 × 월할인율(%) × 일수 ÷ 30</strong><br><br>
+        예) 5천만원, 월 0.7%, 60일<br>
+        = 50,000,000 × 0.7% × 60 ÷ 30 = <strong>700,000원</strong><br>
+        실수령액: <strong>49,300,000원</strong><br><br>
+        ※ 본 계산기는 참고용이며 실제 금리는 발행사 신용도·시황에 따라 다릅니다.<br>
+        ※ 정확한 금리는 전화 상담으로 무료 확인 가능합니다.
+      </div>
+    </div>
+
+    <div class="ctastrip rv">
+      <div>
+        <strong>더 낮은 금리로 할인받고 싶으신가요?</strong>
+        <span>빠른 전화 상담으로 전문 상담원이 즉시 응대합니다</span>
+      </div>
+      <div class="ctastrip-btns">
+        <a class="btn-a" href="tel:02-999-2325">📞 02-999-2325</a>
+        <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" style="padding:13px 16px;border-radius:10px;">💬 카카오 상담</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-wrap">
+    <div class="ft-legal">
+      상호 : 태성투자대부 | 대표자명 : 신현수 | 주소 : 서울 중구 명동2길 57 태평양빌딩 506-1호<br>
+      대부업등록번호 : 2019-서울중구-0048 | 등록지자체 : 서울시 중구청(02-3396-5697)<br>
+      연이자율 최대 20% / 연체이자율 최대 20% / 이자 외 추가비용 X / 조기상환수수료 X / 중개수수료 요구 및 수취는 불법입니다.<br>
+      "과도한 빚, 고통의 시작입니다." &nbsp; "대출 시 귀하의 신용등급이 하락할 수 있습니다."
+    </div>
+    <div class="ft-nav">
+      <a href="/">전자어음할인</a>
+      <a href="/calculator/">수수료 계산기</a>
+      <a href="/possible/">할인 가능 목록</a>
+      <a href="/corporate/">기업금융</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>10));
+document.getElementById('hbg').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+let mode='days';
+function setMode(m){mode=m;document.getElementById('btn-days').classList.toggle('on',m==='days');document.getElementById('btn-date').classList.toggle('on',m==='date');document.getElementById('df-days').classList.toggle('hide',m==='date');document.getElementById('df-date').classList.toggle('show',m==='date');document.getElementById('res').classList.remove('show')}
+function fmt(n){return Math.round(n).toLocaleString('ko-KR')}
+function updateAmt(){const v=parseFloat(document.getElementById('amt-raw').value);const ov=document.getElementById('amt-ov');const hint=document.getElementById('amt-hint');if(!v||v<=0){ov.textContent='';hint.textContent='';return;}ov.textContent=fmt(v);hint.textContent='입력금액: '+fmt(v)+'원'}
+function updateDays(){const v=parseInt(document.getElementById('days-raw').value);document.getElementById('days-ov').textContent=v>0?fmt(v):''}
+function calcDate(){const d=document.getElementById('mdate').value;if(!d)return;const today=new Date();today.setHours(0,0,0,0);const mat=new Date(d);mat.setHours(0,0,0,0);const diff=Math.ceil((mat-today)/86400000)+1;const el=document.getElementById('days-info');if(diff<=0){el.textContent='⚠️ 만기일이 오늘보다 이전입니다';el.className='fh err';document.getElementById('res').classList.remove('show');return;}el.textContent='오늘부터 계산하여 '+fmt(diff)+'일 남음';el.className='fh';calc()}
+function getAmt(){return parseFloat(document.getElementById('amt-raw').value)||0}
+function getRate(){return parseFloat(document.getElementById('rate').value)||0}
+function getDays(){if(mode==='days')return parseInt(document.getElementById('days-raw').value)||0;const d=document.getElementById('mdate').value;if(!d)return 0;const today=new Date();today.setHours(0,0,0,0);const mat=new Date(d);mat.setHours(0,0,0,0);return Math.max(0,Math.ceil((mat-today)/86400000)+1)}
+function calc(){const amt=getAmt(),rate=getRate(),days=getDays();if(amt<=0||rate<=0||days<=0){document.getElementById('res').classList.remove('show');return;}const fee=amt*(rate/100)*days/30,net=amt-fee;document.getElementById('r-net').textContent=fmt(net)+'원';document.getElementById('r-fee').textContent=fmt(fee)+'원';document.getElementById('c-amt').textContent=fmt(amt)+'원';document.getElementById('c-rate').textContent=rate+'%';document.getElementById('c-days').textContent=fmt(days)+'일';document.getElementById('res').classList.add('show')}
+document.getElementById('mdate').min=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
