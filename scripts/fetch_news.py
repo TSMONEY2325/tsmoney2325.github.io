@@ -319,8 +319,18 @@ def main():
         print(f"요약 중: {item['title'][:40]}...")
         item['summary'] = summarize(client, item['title'], item['desc'])
     
-    # 기존 + 새 뉴스 합치기 (최신순, 최대 100개)
+    # 기존 + 새 뉴스 합치기
     all_articles = new_items + existing
+
+    # 날짜순 정렬 (최신이 위로)
+    def parse_date(article):
+        try:
+            from email.utils import parsedate_to_datetime
+            return parsedate_to_datetime(article.get('pubdate', ''))
+        except:
+            return datetime.min.replace(tzinfo=timezone.utc)
+
+    all_articles.sort(key=parse_date, reverse=True)
     all_articles = all_articles[:100]
     
     # 저장
