@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>태성투자대부 - 전자어음할인 전문</title>
-    <link>https://tsmoney2325.github.io/</link>
-    <description>명동 어음시장 노하우, 최저 금리 산출, 당일 입금 원칙.</description>
+    <title>전자어음할인 전문 태성투자대부</title>
+    <link>https://tsmoney.kr/</link>
+    <description>전자어음할인 전문 정식 대부업체. 신용조회 없이 당일 즉시처리. ☎ 02-999-2325</description>
     <language>ko</language>
-
+    <atom:link href="https://tsmoney.kr/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
-      <title>전자어음할인 전문 기업 태성투자대부</title>
-      <link>https://tsmoney2325.github.io/</link>
-      <description>안전하고 신속한 전자어음할인 서비스 안내</description>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0900</pubDate>
+      <title>전자어음할인 서비스 안내</title>
+      <link>https://tsmoney.kr/</link>
+      <description>전자어음할인 전문 정식 대부업체 태성투자대부. 신용조회 없이 배서·할인·입금 당일 완료. 이자 외 수수료 없음.</description>
+      <pubDate>Thu, 20 Mar 2026 09:00:00 +0900</pubDate>
     </item>
-
     <item>
-      <title>실시간 전자어음할인 수수료 이자 계산기</title>
-      <link>https://tsmoney2325.github.io/calculator/</link>
-      <description>전자어음 할인 실수령액 즉시 계산 도구</description>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0900</pubDate>
+      <title>전자어음할인 수수료 계산기</title>
+      <link>https://tsmoney.kr/calculator/</link>
+      <description>전자어음할인 수수료와 실수령액을 무료로 즉시 계산하세요. 어음금액·월할인율·만기일 입력만으로 할인료와 실수령액을 바로 확인.</description>
+      <pubDate>Thu, 20 Mar 2026 09:00:00 +0900</pubDate>
     </item>
-
     <item>
-      <title>전자어음 할인 가능 기업 목록 조회</title>
-      <link>https://tsmoney2325.github.io/possible/</link>
-      <description>전자어음할인 가능한 건설사 및 상장기업과 그 외 기업 리스트</description>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0900</pubDate>
+      <title>전자어음 할인 가능 발행사 목록</title>
+      <link>https://tsmoney.kr/possible/</link>
+      <description>보유하신 전자어음의 발행사를 검색해 할인 가능 여부를 확인하세요. 업종별·가나다순 전체 목록 제공.</description>
+      <pubDate>Thu, 20 Mar 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>잔고증명·자금조성 기업금융 서비스</title>
+      <link>https://tsmoney.kr/corporate/</link>
+      <description>잔고증명서 발급 대행(입찰·허가·M&amp;A·기업진단), 자금조성 대행(연말결산·PF증거금). ☎ 02-999-2325</description>
+      <pubDate>Thu, 20 Mar 2026 09:00:00 +0900</pubDate>
     </item>
   </channel>
 </rss>
