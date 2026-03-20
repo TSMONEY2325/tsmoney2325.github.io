@@ -28,6 +28,8 @@ jobs:
       - name: 뉴스 수집 및 페이지 생성
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
         run: python scripts/fetch_news.py
       
       - name: 변경사항 커밋 및 푸시
