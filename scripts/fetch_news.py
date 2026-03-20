@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 전자어음 뉴스 자동 수집 및 요약 스크립트
-- 네이버 뉴스 RSS에서 '전자어음' 키워드 뉴스 수집
+- 네이버 검색 API에서 '전자어음' 키워드 뉴스 수집
 - Claude AI로 요약
 - news/index.html 자동 생성
 """
@@ -11,53 +11,46 @@ import os
 import json
 import urllib.request
 import urllib.parse
-import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 import anthropic
 import re
 
 # ── 설정 ──
 KEYWORD = "전자어음"
-MAX_ITEMS = 50  # 최대 수집 개수
+MAX_ITEMS = 50
 DATA_FILE = "news/news_data.json"
 NEWS_HTML = "news/index.html"
-
-# ── 한국 시간 ──
 KST = timezone(timedelta(hours=9))
 
-def fetch_news():
-    """네이버 뉴스 RSS에서 전자어음 뉴스 수집"""
+def fetch_naver_news(client_id, client_secret):
+    """네이버 검색 API로 전자어음 뉴스 수집"""
     encoded = urllib.parse.quote(KEYWORD)
-    url = f"https://news.google.com/rss/search?q={encoded}&hl=ko&gl=KR&ceid=KR:ko"
-    
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    url = f"https://openapi.naver.com/v1/search/news.json?query={encoded}&display=50&sort=date"
+
+    req = urllib.request.Request(url)
+    req.add_header("X-Naver-Client-Id", client_id)
+    req.add_header("X-Naver-Client-Secret", client_secret)
+
     try:
         with urllib.request.urlopen(req, timeout=15) as res:
-            content = res.read()
+            result = json.loads(res.read().decode('utf-8'))
     except Exception as e:
-        print(f"뉴스 수집 실패: {e}")
+        print(f"네이버 뉴스 수집 실패: {e}")
         return []
-    
-    root = ET.fromstring(content)
+
     items = []
-    
-    for item in root.findall('.//item')[:MAX_ITEMS]:
-        title_el = item.find('title')
-        link_el = item.find('link')
-        desc_el = item.find('description')
-        pubdate_el = item.find('pubDate')
-        source_el = item.find('source')
+    for item in result.get('items', [])[:MAX_ITEMS]:
+        title = re.sub(r'<[^>]+>', '', item.get('title', '')).strip()
+        desc = re.sub(r'<[^>]+>', '', item.get('description', '')).strip()
+        link = item.get('originallink') or item.get('link', '')
+        pubdate = item.get('pubDate', '')
         
-        title = title_el.text if title_el is not None else ''
-        link = link_el.text if link_el is not None else ''
-        desc = desc_el.text if desc_el is not None else ''
-        pubdate = pubdate_el.text if pubdate_el is not None else ''
-        source = source_el.text if source_el is not None else ''
-        
-        # HTML 태그 제거
-        desc = re.sub(r'<[^>]+>', '', desc or '').strip()
-        title = re.sub(r'<[^>]+>', '', title or '').strip()
-        
+        # 출처 추출 (링크에서 도메인 추출)
+        try:
+            source = urllib.parse.urlparse(link).netloc.replace('www.', '')
+        except:
+            source = '뉴스'
+
         if title and link:
             items.append({
                 'title': title,
@@ -66,28 +59,24 @@ def fetch_news():
                 'pubdate': pubdate,
                 'source': source,
             })
-    
+
     print(f"수집된 뉴스: {len(items)}개")
     return items
 
 def load_existing():
-    """기존 저장된 뉴스 불러오기"""
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, encoding='utf-8') as f:
             return json.load(f)
     return []
 
 def save_data(data):
-    """뉴스 데이터 저장"""
     os.makedirs('news', exist_ok=True)
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def summarize(client, title, desc):
-    """Claude AI로 뉴스 요약"""
     if not desc or len(desc) < 30:
         return desc or title
-    
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-20250514",
@@ -102,24 +91,29 @@ def summarize(client, title, desc):
         print(f"요약 실패: {e}")
         return desc[:150] + '...'
 
+def parse_date(article):
+    try:
+        from email.utils import parsedate_to_datetime
+        return parsedate_to_datetime(article.get('pubdate', ''))
+    except:
+        return datetime.min.replace(tzinfo=timezone.utc)
+
 def generate_html(articles):
-    """news/index.html 생성"""
     now = datetime.now(KST).strftime('%Y년 %m월 %d일 %H:%M')
-    
+
     cards = ''
     for a in articles:
         date_str = a.get('pubdate', '')
         try:
-            # RFC 2822 형식 파싱 시도
             from email.utils import parsedate_to_datetime
             dt = parsedate_to_datetime(date_str)
             date_str = dt.astimezone(KST).strftime('%Y.%m.%d')
         except:
             date_str = date_str[:16] if date_str else ''
-        
+
         source = a.get('source', '뉴스')
         summary = a.get('summary', a.get('desc', ''))[:200]
-        
+
         cards += f'''
         <article class="news-card rv">
           <div class="news-meta">
@@ -132,10 +126,10 @@ def generate_html(articles):
           <p class="news-summary">{summary}</p>
           <a href="{a['link']}" target="_blank" rel="noopener" class="news-link">원문 보기 →</a>
         </article>'''
-    
+
     if not cards:
         cards = '<div class="no-news">현재 수집된 뉴스가 없습니다.</div>'
-    
+
     html = f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -289,7 +283,7 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>'''
-    
+
     os.makedirs('news', exist_ok=True)
     with open(NEWS_HTML, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -297,48 +291,41 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
 def main():
     api_key = os.environ.get('ANTHROPIC_API_KEY')
+    naver_id = os.environ.get('NAVER_CLIENT_ID')
+    naver_secret = os.environ.get('NAVER_CLIENT_SECRET')
+
     if not api_key:
-        print("ANTHROPIC_API_KEY 환경변수가 없습니다.")
+        print("ANTHROPIC_API_KEY 없음")
         return
-    
+    if not naver_id or not naver_secret:
+        print("NAVER_CLIENT_ID 또는 NAVER_CLIENT_SECRET 없음")
+        return
+
     client = anthropic.Anthropic(api_key=api_key)
-    
+
     # 기존 데이터 로드
     existing = load_existing()
     existing_links = {a['link'] for a in existing}
-    
-    # 새 뉴스 수집
-    fetched = fetch_news()
-    
+
+    # 네이버 뉴스 수집
+    fetched = fetch_naver_news(naver_id, naver_secret)
+
     # 새 뉴스만 필터링
     new_items = [item for item in fetched if item['link'] not in existing_links]
     print(f"새 뉴스: {len(new_items)}개")
-    
+
     # 새 뉴스 요약
     for item in new_items:
         print(f"요약 중: {item['title'][:40]}...")
         item['summary'] = summarize(client, item['title'], item['desc'])
-    
-    # 기존 + 새 뉴스 합치기
+
+    # 합치기 + 날짜순 정렬
     all_articles = new_items + existing
-
-    # 날짜순 정렬 (최신이 위로)
-    def parse_date(article):
-        try:
-            from email.utils import parsedate_to_datetime
-            return parsedate_to_datetime(article.get('pubdate', ''))
-        except:
-            return datetime.min.replace(tzinfo=timezone.utc)
-
     all_articles.sort(key=parse_date, reverse=True)
     all_articles = all_articles[:100]
-    
-    # 저장
+
     save_data(all_articles)
-    
-    # HTML 생성
     generate_html(all_articles)
-    
     print("완료!")
 
 if __name__ == '__main__':
