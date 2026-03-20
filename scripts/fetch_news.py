@@ -51,7 +51,8 @@ def fetch_naver_news(client_id, client_secret):
         except:
             source = '뉴스'
 
-        if title and link:
+        # '전자어음' 키워드가 제목 또는 본문에 포함된 것만 수집
+        if title and link and ('전자어음' in title or '전자어음' in desc):
             items.append({
                 'title': title,
                 'link': link,
