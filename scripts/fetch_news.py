@@ -24,7 +24,8 @@ KST = timezone(timedelta(hours=9))
 
 def fetch_naver_news(client_id, client_secret):
     """네이버 검색 API로 전자어음 뉴스 수집"""
-    encoded = urllib.parse.quote(KEYWORD)
+    # 큰따옴표로 감싸서 정확한 키워드만 검색
+    encoded = urllib.parse.quote(f'"{KEYWORD}"')
     url = f"https://openapi.naver.com/v1/search/news.json?query={encoded}&display=50&sort=date"
 
     req = urllib.request.Request(url)
@@ -51,8 +52,7 @@ def fetch_naver_news(client_id, client_secret):
         except:
             source = '뉴스'
 
-        # '전자어음' 키워드가 제목 또는 본문에 포함된 것만 수집
-        if title and link and ('전자어음' in title or '전자어음' in desc):
+        if title and link:
             items.append({
                 'title': title,
                 'link': link,
