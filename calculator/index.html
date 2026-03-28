@@ -69,7 +69,8 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
 .rate-input{color:var(--text)!important;caret-color:var(--text)!important;font-family:var(--sans)!important}
-.ov{font-family:var(--sans)!important}
+/* ✅ 수정: font-variant-numeric, font-feature-settings 추가 */
+.ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
 .iw input[type=date]:focus{border-color:var(--g);background:var(--w)}
 .ov{position:absolute;top:0;left:0;right:44px;bottom:0;padding:12px 15px;font-size:16px;font-weight:600;color:var(--text);pointer-events:none;display:flex;align-items:center;overflow:hidden}
@@ -87,12 +88,12 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .rm{border-right:1px solid rgba(255,255,255,.12);padding-right:24px}
 .rs{padding-left:24px}
 .rl{font-size:11px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:7px}
-.rv2{font-family:var(--serif);font-size:28px;font-weight:800;color:var(--al);line-height:1.1;letter-spacing:-.02em}
+/* ✅ 수정: font-family var(--serif) → var(--sans), font-variant-numeric·font-feature-settings 추가 */
+.rv2{font-family:var(--sans);font-size:28px;font-weight:800;color:var(--al);line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .rv2.fee{font-size:22px;color:rgba(255,255,255,.85)}
 .rd{background:var(--gp);padding:14px 28px;display:flex;gap:16px;flex-wrap:wrap}
 .rc{font-size:12px;color:var(--gm)}
 .rc strong{font-weight:700;color:var(--g)}
-/* 유의사항 박스 */
 .info-box{max-width:700px;margin:18px auto 0;background:var(--w);border-radius:14px;padding:20px 24px;border:1px solid var(--st)}
 .ibt{font-size:14px;font-weight:700;color:var(--g);margin-bottom:8px}
 .ibd{font-size:13px;color:var(--g6);line-height:1.8}
@@ -111,11 +112,10 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   .rm{border-right:none;padding-right:0;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:18px;margin-bottom:18px}
   .rs{padding-left:0}
   .ctastrip{flex-direction:column;text-align:center}
-    }
+}
 footer{background:#06100E;padding:36px 5vw 28px}
 .ft-wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
 .ft-legal{font-size:11px;color:rgba(255,255,255,.55);line-height:2.1}
-
 .ft-nav{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0}
 .ft-nav a{font-size:13px;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;white-space:nowrap}
 .ft-nav a:hover{color:var(--al)}
@@ -207,7 +207,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
       </div>
     </div>
 
-    <!-- 계산 공식 안내만 유지, 법적 고지는 footer로 이동 -->
     <div class="info-box rv">
       <div class="ibt">💡 계산 공식 안내</div>
       <div class="ibd">
