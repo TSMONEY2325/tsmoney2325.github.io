@@ -36,8 +36,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .nav-links a.on{font-weight:700;color:var(--al)}
 .nav-r{display:flex;align-items:center;gap:9px}
 .nav-tel{font-size:15px;font-weight:700;color:var(--al);text-decoration:none;letter-spacing:.02em;white-space:nowrap}
-.btn-kko{background:#FEE500;color:#3C1E1E;font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:transform .15s,box-shadow .15s}
-.btn-kko:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(254,229,0,.5)}
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
 .hbg span{display:block;width:22px;height:2px;background:var(--w);border-radius:2px}
 .mob{display:none;position:fixed;top:72px;left:0;right:0;z-index:499;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--g2);padding:14px 5vw 18px;flex-direction:column;gap:4px}
@@ -45,8 +43,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .mob a{font-size:15px;font-weight:500;color:var(--text);text-decoration:none;padding:11px 14px;border-radius:10px;transition:background .18s}
 .mob a:hover{background:var(--gp);color:var(--g)}
 .mob .m-tel{margin-top:10px;padding:13px;background:var(--g);border-radius:12px;color:var(--al);font-family:var(--serif);font-size:18px;font-weight:800;text-align:center}
-.mob .m-kko{background:#FEE500;color:#3C1E1E;font-weight:700;font-size:13px;padding:12px;border-radius:12px;text-align:center}
-
 .pw{padding-top:72px}
 .ph{background:var(--g);padding:52px 5vw 0;text-align:center}
 .phi{max-width:680px;margin:0 auto}
@@ -55,25 +51,18 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .ph h1{font-family:var(--serif);font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--w);line-height:1.2;letter-spacing:-.025em;margin-bottom:12px}
 .ph h1 em{font-style:normal;color:var(--al)}
 .ph p{font-size:14px;color:rgba(255,255,255,.52);line-height:1.85;padding-bottom:42px}
-
 .psec{padding:0 5vw 72px}
 .sw{max-width:920px;margin:-28px auto 0}
-
-/* SEARCH */
 .search-bar{background:var(--w);border-radius:16px;box-shadow:0 12px 40px rgba(12,53,38,.11);padding:16px 20px;display:flex;gap:10px;margin-bottom:20px}
 .search-bar input{flex:1;border:1.5px solid var(--g2);border-radius:10px;padding:11px 15px;font-size:14px;font-family:var(--sans);color:var(--text);outline:none;transition:border-color .2s}
 .search-bar input:focus{border-color:var(--g)}
 .search-bar button{background:var(--g);color:var(--w);border:none;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--sans);transition:background .2s}
 .search-bar button:hover{background:var(--gm)}
-
-/* CATEGORY TABS */
 .cat-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
 .cat-tab{font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;border:1.5px solid var(--g2);background:var(--w);color:var(--g6);cursor:pointer;transition:all .18s;white-space:nowrap}
 .cat-tab:hover,.cat-tab.on{border-color:var(--g);background:var(--gp);color:var(--g)}
 .cat-tab.etc-tab{border-color:rgba(201,148,58,.5);color:var(--a);background:rgba(201,148,58,.06)}
 .cat-tab.etc-tab.on{background:var(--a);color:var(--g);border-color:var(--a)}
-
-/* INDUSTRY CARDS */
 .ig-wrap{display:flex;flex-direction:column;gap:14px}
 .ig-card{background:var(--w);border-radius:16px;border:1px solid var(--st);overflow:hidden;transition:box-shadow .2s}
 .ig-card:hover{box-shadow:0 8px 28px rgba(12,53,38,.08)}
@@ -95,8 +84,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .co-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:10px;flex-shrink:0;white-space:nowrap}
 .cb-top{background:var(--gp);color:var(--gm)}
 .cb-mid{background:var(--st);color:var(--g6)}
-
-/* 기타 발행사 */
 .etc-section{display:none}
 .etc-section.show{display:block}
 .etc-card{background:var(--w);border-radius:16px;border:1px solid rgba(201,148,58,.3);overflow:hidden}
@@ -104,11 +91,9 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .etc-head-title{font-size:15px;font-weight:700;color:var(--a);flex:1}
 .etc-head-sub{font-size:12px;color:var(--g4)}
 .etc-body{padding:16px 20px}
-
 .cho-bar{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;padding:12px 14px;background:var(--off);border-radius:12px;border:1px solid var(--g2)}
 .cho-btn{font-size:13px;font-weight:700;width:36px;height:36px;border-radius:8px;border:1px solid var(--g2);background:var(--w);color:var(--g6);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;font-family:var(--sans)}
 .cho-btn:hover,.cho-btn.on{background:var(--g);color:var(--w);border-color:var(--g)}
-
 .cho-group{display:none}
 .cho-group.show{display:block}
 .cho-label{font-size:13px;font-weight:700;color:var(--g);margin-bottom:10px;padding:6px 12px;background:var(--gp);border-radius:8px;display:inline-block}
@@ -118,9 +103,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .etc-item.hide{display:none}
 .etc-dot{width:5px;height:5px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .etc-name{font-size:12px;font-weight:500;color:var(--text);line-height:1.3}
-
 #no-res{display:none;text-align:center;padding:28px;color:var(--g4);font-size:14px;background:var(--w);border-radius:14px;border:1px solid var(--st);margin-bottom:14px}
-
 .notice-card{max-width:920px;margin:18px auto 0;background:var(--w);border-radius:14px;border:1px solid var(--st);padding:20px 24px}
 .notice-card p{font-size:13px;color:var(--g6);line-height:1.9}
 .notice-card strong{font-weight:600;color:var(--g)}
@@ -132,19 +115,16 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .btn-a:hover{background:var(--al)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .rv.vis{opacity:1;transform:none}
-
-
 @media(max-width:860px){.nav-links{display:none}.hbg{display:flex}.nav-tel{display:none}}
 @media(max-width:600px){
   .search-bar{flex-direction:column}
   .co-grid,.etc-grid{grid-template-columns:repeat(2,1fr)}
   .cta2{flex-direction:column;text-align:center}
-        .cho-btn{width:30px;height:30px;font-size:12px}
+  .cho-btn{width:30px;height:30px;font-size:12px}
 }
 footer{background:#06100E;padding:36px 5vw 28px}
 .ft-wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
 .ft-legal{font-size:11px;color:rgba(255,255,255,.55);line-height:2.1}
-
 .ft-nav{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0}
 .ft-nav a{font-size:13px;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;white-space:nowrap}
 .ft-nav a:hover{color:var(--al)}
@@ -162,15 +142,15 @@ footer{background:#06100E;padding:36px 5vw 28px}
   </ul>
   <div class="nav-r">
     <a class="nav-tel" href="tel:02-999-2325">02-999-2325</a>
-    <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오 상담</a>
     <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mob" id="mob">
-  <a href="/">📑 전자어음할인</a><a href="/calculator/">📉 수수료 계산기</a>
-  <a href="/possible/">📋 할인 가능 목록</a><a href="/corporate/">🏢 기업금융</a>
+  <a href="/">📑 전자어음할인</a>
+  <a href="/calculator/">📉 수수료 계산기</a>
+  <a href="/possible/">📋 할인 가능 목록</a>
+  <a href="/corporate/">🏢 기업금융</a>
   <a class="m-tel" href="tel:02-999-2325">📞 02-999-2325</a>
-  <a class="m-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오톡 상담하기</a>
 </div>
 
 <div class="pw">
@@ -203,7 +183,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
 
       <div id="no-res">검색 결과가 없습니다. 전화 상담(02-999-2325)으로 문의해 주세요.</div>
 
-      <!-- 업종별 카드 -->
       <div class="ig-wrap" id="ig-wrap">
         <div class="ig-card open" data-cat="건설">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">🏗</span><span class="ig-title">건설</span><span class="ig-count" id="cnt-건설"></span><span class="ig-arrow">▼</span></div>
@@ -327,7 +306,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
         </div>
       </div>
 
-      <!-- 기타 발행사 검색 -->
       <div class="etc-section" id="etc-section">
         <div class="etc-card">
           <div class="etc-head">
@@ -354,7 +332,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
         <div><strong>목록에 없는 기업도 바로 조회 가능합니다</strong><span>발행사 사업자번호와 어음 정보를 알려주시면 즉시 금리를 안내해 드립니다</span></div>
         <div class="cta2-btns">
           <a class="btn-a" href="tel:02-999-2325">📞 02-999-2325</a>
-          <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" style="padding:13px 16px;border-radius:10px;">💬 카카오 상담</a>
         </div>
       </div>
     </div>
@@ -380,11 +357,10 @@ footer{background:#06100E;padding:36px 5vw 28px}
 </footer>
 
 <script>
-// ── 기존 GitHub 목록 전체 반영 ──
 const ETC = {
   'ㄱ':['21세기기업','가감디자인그룹','가나레포츠','가빈','가야이에스씨','가온전선','가우디자인','갑을건설','강남건영','강남화성','강릉건설','강산개발','강산건설','강운공업','강원엔티에스','개선스포츠','거성산업','거흥산업','건명의료재단','건설철강','건설화학공업','건영제과','건우','건우기계설비','건융프로엔','건주종합건설','건창산기','건화','경기산업','경남','경남금속','경남모직','경남에너지','경동건설','경동나비엔','경림에이치티시','경방','경보제약','경보종합건설','경산제지','경수제철','경수제철건설','경신','경우이앤씨','경우이엔씨','경우전기','경인엔지니어링','경창산업','경희알미늄','계룡건설산업','계양정밀','고도초음파','고려그린믹스','고려산업케이알','고려의료재단','고려제강','고려제약','고려특수선재','고려하드웨어','고산','고영테크놀러지','고운건설','고운시티아이','고운주택','고원금속','골드디움','골드클래스','공주현대병원','관악','관작진테크','광건티앤씨','광덕전력','광림','광명산업','광명잉크제조','광명전상','광성기업','광성산업개발','광성인비스','광신기계공업','광신전설','광신종합건설','광신주택','광양종합건설','광영개발','광일건설','광일금속','광일기공','광일산업','광일이노텍','광장이엠씨','광진기업','광진산업','광진상공','광혁건설','교림유통','교보문고','구미인터내셔날','구보공영','구산토건','구영테크','구일엔지니어링','국도화인켐','국민레미콘','국민서관','국민피앤텍','국보','국보디자인','국일정공','국일제지','국제약품','국제종합기계','그레이트북스','그린이엔지','그린조이','그림','극동메이저','극동유화','극동판넬공업','글로벌모터스','금강공업','금강뉴이앤씨','금강레미컨','금강레미콘','금강엔터프라이즈','금강이엠씨','금강종합건설','금강주택','금강화학','금광기업','금도건설','금문산업','금비','금성백조주택','금성제지기계','금양그린파워','금양산업개발','금양인터내셔날','금창','금한','금호건설','금호산업','금호에이치티','금호철강','금호폴리켐','금호피앤비화학','금홍팬시','기광산업','기도산업','기산단조','기승공업','기영약품','기전산업','김앤드이','김약품','까뮤이앤씨','깨끗한나라'],
   'ㄴ':['나디아퍼시픽','나라엠앤디','나라엠텍','나성산업개발','나성종합건설','나우테크','나재','나투라미디어','나투라페이퍼','남경메디칼','남경설비','남경엔지니어링토건','남광토건','남명건설','남명기공','남선알미늄','남성기계산업','남양공업','남양기계설비','남양넥스모','남양산업','남양약품','남양화학공업','남웅건설','남해종합건설','남화토건','남흥건설','내외','네덱','네스에프엔씨','네오디아','네오오토','네오텍','넥스모','넥스콘테크놀러지','넥스트라이프','넥스틸','넥스팜코리아','넥시스','넥시스디자인그룹','넵스','노루알앤씨','노루코일코팅','노루페인트','노바렉스','녹십자이엠','농심엔지니어링','뉴그린창신','뉴아세아','뉴인텍','능원금속공업','니카코리아','니프코코리아','닉스아이'],
-  'ㄷ':['다다','다보스티엔지','다성건설','다스','다스코','다올이앤씨','다운이엔씨','다움','다원건영','다원디앤아이건설','다원디자인','다원아이디앤씨','다원앤컴퍼니','다윈프릭션','다이나믹디자인','단석산업','단성','대가파우더시스템','대경유통','대광건영','대광로제비앙','대광이엔지','대광직물','대구정밀','대국아이엔티','대근토건','대금지오웰','대덕전설','대도토건','대동도어','대동병원','대동시스템','대동중공업','대동하이렉스','대라수건설','대륙금속','대륙제관','대륭전선','대리정밀','대린테크','대림건설','대림바토스','대림비앤코','대림제지','대림종합건설','대명건설','대명수안','대명종합건설','대명티에스','대방건설','대보건설','대보실업','대산산업','대산전자','대산화스너','대선이엔씨','대성건설','대성다이캐스팅','대성마리프','대성베르힐건설','대성엘텍','대성엠디아이','대성주철공업','대성후드텍','대승','대승정밀','대신','대신강업','대신금속','대신산업설비','대신시스템','대신전선','대신플랜트산업','대아건설','대아펌프','대안건철','대양산업건설','대양화성','대연','대열보일러','대영이앤디','대영진흥','대영파워펌프','대우건설','대우공업','대우루컴즈','대우산업개발','대우조선해양건설','대욱케스트','대웅씨티','대웅제약','대원강업','대원건설산업','대원산업','대원에프앤드씨','대원이노스','대원전기','대원전선','대원헬스케어','대유글로벌','대유에이텍','대유에이피','대유위니아','대유이피','대유플러스','대유합금','대유홀딩스','대윤환경','대익이엔지','대일소방','대일전기산업','대일정공','대저건설','대전지오영','대정고분자산업','대정럽텍','대주','대주산업','대주이엔티','대주정공','대주중공업','대주코레스','대진기계','대창','대창강업','대창기업','대창설비','대창스틸','대철','대청엔지니어링','대청이에스','대코','대풍','대풍공업','대하산업개발','대한광통신','대한금속공업','대한기전','대한뉴팜','대한방직','대한스텐레스파이프','대한약품공업','대한이엔지','대한전선','대한제강','대한홍삼진흥공사','대현','대현기건','대현에벤에셀','대협','대협철강','대혜건축','대호특수강','대호피앤씨','대홍전기','대화건설','대화도시가스','대화산기','대화알미늄','대화연료펌프','대화종합건설','대화페인트공업','대흥레미콘','대흥알앤티','대흥유압','대흥정공','대흥피에스씨','더본종합건설','더엔진','더오포','더와이','덕대건설','덕신건업','덕신하우징','덕양산업','덕일기공','덕재건설','덕진종합건설','덕진토건','덕천판지','데무','도레이첨단소재','도루코','도아','도아기업','도양기업','도원건업','도화엔지니어링','독립문','동강홀딩스','동광개발','동광건설','동광기연','동광인터내셔날','동광종합토건','동구전자','동국물산','동국생명과학','동국정밀화학','동국제강','동국제약','동궁종합건설','동극건업','동남','동남기계','동남정밀','동림엠에스','동명기술공단','동명엔터프라이즈','동문건설','동방노보펌','동방아그로','동방에프티엘','동보','동부레미콘','동부토건','동산테크','동서기공','동서피씨씨','동선산업','동성제약','동성중공업','동성진흥','동성케미컬','동성티씨에스','동아건설산업','동아일렉콤','동아전기부품','동아전장','동아정밀공업','동아토건','동양강철','동양건설','동양건설산업','동양금속','동양매직','동양물산기업','동양산업','동양에스텍','동양철관','동양테크윈','동양피스톤','동우개발','동우에이치에스티','동우정공','동원개발','동원건설산업','동원로엑스','동원종합건설','동원팜스','동은단조','동은학원','동익건설','동인종합건설','동일고무벨트','동일기술공사','동일산업','동일쉘터시스템','동일씨앤이','동일인테리어','동일정밀공업','동주산업','동진건설산업','동진레저','동진산기','동진산업','동진쎄미켐','동진엔지니어링','동진테크윈','동진파일','동진판지','동진피씨이','동하산업','동해금속','동해식품','동호기계','동호유통','동화건설','동화기계','동화기업','동화주택','동화케이팀','동화특수강','동희산기','동희산업','두리콜렉션','두산종합건재','두양건축','두올','두원공조','두원이에프씨','두원정공','두진','두진건설','두진양행','두형엔지니어링','디랙스','디비메탈','디씨알이','디씨엠','디아이건설','디아이알','디아이오토모티브','디아이이앤티','디아이플로','디알비동일','디알액시온','디앤에이모터스','디어스아이','디어스이앤씨','디에스나이키','디에스단석','디에스디삼호','디에스메탈','디에스아이','디에스제이','디에스종합건설','디에이건설','디에이치에이치아이','디에이치오토모티브','디에이치오토웨어','디에이피','디엘피','디엠씨','디엠테크','디오티앤','디와이피엔에프','디케이동신','디케이모터스','디케이오스텍','디티알','DH오토웨어'],
+  'ㄷ':['다다','다보스티엔지','다성건설','다스','다스코','다올이앤씨','다운이앤씨','다움','다원건영','다원디앤아이건설','다원디자인','다원아이디앤씨','다원앤컴퍼니','다윈프릭션','다이나믹디자인','단석산업','단성','대가파우더시스템','대경유통','대광건영','대광로제비앙','대광이엔지','대광직물','대구정밀','대국아이엔티','대근토건','대금지오웰','대덕전설','대도토건','대동도어','대동병원','대동시스템','대동중공업','대동하이렉스','대라수건설','대륙금속','대륙제관','대륭전선','대리정밀','대린테크','대림건설','대림바토스','대림비앤코','대림제지','대림종합건설','대명건설','대명수안','대명종합건설','대명티에스','대방건설','대보건설','대보실업','대산산업','대산전자','대산화스너','대선이엔씨','대성건설','대성다이캐스팅','대성마리프','대성베르힐건설','대성엘텍','대성엠디아이','대성주철공업','대성후드텍','대승','대승정밀','대신','대신강업','대신금속','대신산업설비','대신시스템','대신전선','대신플랜트산업','대아건설','대아펌프','대안건철','대양산업건설','대양화성','대연','대열보일러','대영이앤디','대영진흥','대영파워펌프','대우건설','대우공업','대우루컴즈','대우산업개발','대우조선해양건설','대욱케스트','대웅씨티','대웅제약','대원강업','대원건설산업','대원산업','대원에프앤드씨','대원이노스','대원전기','대원전선','대원헬스케어','대유글로벌','대유에이텍','대유에이피','대유위니아','대유이피','대유플러스','대유합금','대유홀딩스','대윤환경','대익이엔지','대일소방','대일전기산업','대일정공','대저건설','대전지오영','대정고분자산업','대정럽텍','대주','대주산업','대주이엔티','대주정공','대주중공업','대주코레스','대진기계','대창','대창강업','대창기업','대창설비','대창스틸','대철','대청엔지니어링','대청이에스','대코','대풍','대풍공업','대하산업개발','대한광통신','대한금속공업','대한기전','대한뉴팜','대한방직','대한스텐레스파이프','대한약품공업','대한이엔지','대한전선','대한제강','대한홍삼진흥공사','대현','대현기건','대현에벤에셀','대협','대협철강','대혜건축','대호특수강','대호피앤씨','대홍전기','대화건설','대화도시가스','대화산기','대화알미늄','대화연료펌프','대화종합건설','대화페인트공업','대흥레미콘','대흥알앤티','대흥유압','대흥정공','대흥피에스씨','더본종합건설','더엔진','더오포','더와이','덕대건설','덕신건업','덕신하우징','덕양산업','덕일기공','덕재건설','덕진종합건설','덕진토건','덕천판지','데무','도레이첨단소재','도루코','도아','도아기업','도양기업','도원건업','도화엔지니어링','독립문','동강홀딩스','동광개발','동광건설','동광기연','동광인터내셔날','동광종합토건','동구전자','동국물산','동국생명과학','동국정밀화학','동국제강','동국제약','동궁종합건설','동극건업','동남','동남기계','동남정밀','동림엠에스','동명기술공단','동명엔터프라이즈','동문건설','동방노보펌','동방아그로','동방에프티엘','동보','동부레미콘','동부토건','동산테크','동서기공','동서피씨씨','동선산업','동성제약','동성중공업','동성진흥','동성케미컬','동성티씨에스','동아건설산업','동아일렉콤','동아전기부품','동아전장','동아정밀공업','동아토건','동양강철','동양건설','동양건설산업','동양금속','동양매직','동양물산기업','동양산업','동양에스텍','동양철관','동양테크윈','동양피스톤','동우개발','동우에이치에스티','동우정공','동원개발','동원건설산업','동원로엑스','동원종합건설','동원팜스','동은단조','동은학원','동익건설','동인종합건설','동일고무벨트','동일기술공사','동일산업','동일쉘터시스템','동일씨앤이','동일인테리어','동일정밀공업','동주산업','동진건설산업','동진레저','동진산기','동진산업','동진쎄미켐','동진엔지니어링','동진테크윈','동진파일','동진판지','동진피씨이','동하산업','동해금속','동해식품','동호기계','동호유통','동화건설','동화기계','동화기업','동화주택','동화케이팀','동화특수강','동희산기','동희산업','두리콜렉션','두산종합건재','두양건축','두올','두원공조','두원이에프씨','두원정공','두진','두진건설','두진양행','두형엔지니어링','디랙스','디비메탈','디씨알이','디씨엠','디아이건설','디아이알','디아이오토모티브','디아이이앤티','디아이플로','디알비동일','디알액시온','디앤에이모터스','디어스아이','디어스이앤씨','디에스나이키','디에스단석','디에스디삼호','디에스메탈','디에스아이','디에스제이','디에스종합건설','디에이건설','디에이치에이치아이','디에이치오토모티브','디에이치오토웨어','디에이피','디엘피','디엠씨','디엠테크','디오티앤','디와이피엔에프','디케이동신','디케이모터스','디케이오스텍','디티알','DH오토웨어'],
   'ㄹ':['라비닉스','라송산업','라온건설','라온레저개발','라인건설','라인공영','라인바이린','레드페이스','렉셈','로카디','로터스엔지니어링','로터텍','롯데글로벌로지스','롯데에너지머티리얼즈','루미리치','룩스그린','리모트솔루션','리베도','리본','리우','린나이코리아','린컴퍼니','립멘'],
   'ㅁ':['마니커에프앤지','마더스제약','마더스팜','마리오쇼핑','마스타씨스템','마스테코','마이크로원','마포애경타운','만아','만호제강','말타니','매그나칩반도체','매일경제신문사','매트프라자','맥스로텍','메가마트','메라톤','메르센코리아','메이븐에프씨','면사랑','명가산업개발','명륜공업','명문제약','명성','명성인토피아','명신','명신산업','명인제약','명일건업','명전사','명지건설','명진정밀','명진커넥터','명현이엔씨','명화공업','모건알루미늄공업','모나미','모닝글로리','모든오피스','모란식품','모렉스','모베이스','모베이스오토','모베이스전자','모베이스코넥타','모성건설','모아건설','모아건설산업','모아종합건설','모아주택산업','모카몰드','모토닉','모헨즈','무경설비','무림에스피','무림페이퍼','무림피앤피','무송지오씨','무신사','무크','미광정공','미동이엔씨','미드플래닝','미래나노텍','미래도건설','미래도이엔씨','미래엔','미래엔지니어링','미샤','미주건설','미주산업전자','미진건설','미창석유공업','밀레'],
   'ㅂ':['바낙스','바바패션','바오스','바이켐','반도건설','반도유니콘','반도유스콘','반도장식산업','반월지관공업','방림','백광산업','백광의약품','백산테크','백상건설','백제약품','백호식품','범양건영','범양공조산업','범양기업','범양이엔씨','범창모산','베로베','베어링아트','벤제프','벨아이앤에스','벨이앤씨','벨커뮤니케이션즈','병화','보고에이피','보광건설','보광종합건설','보국전기공업','보락','보림토건','보미건설','보원산업','보원식품','보원의료재단','보원화스너','복산나이스','부경산업개발','부국레미콘','부국산업','부국철강','부농','부라더상사','부림약품','부산주공','부성에베레스트','부영산업','부현전기','북센','브랑누아','브이씨텍','브이티','브이피에이치메탈','브이피에이치씨','비앤에스파트너','비에이치아이','비엔에이치','비엠씨','비와이엔블랙야크','비원씨앤알','비제이티인터내셔날','빅토스'],
@@ -398,7 +374,6 @@ const ETC = {
   'ㅎ':['하나마이크론','하나아이엠티','하나전설','하나제약','하나플랜트','하바드','하스코','하우스팬','하이랜드푸드','하이메트','하이스틸','하이에어코리아','하이트론씨스템즈','하이트진로','하이호금속','하임테크','한가람약품','한국가와사키로보틱스','한국내쇼날','한국메탈','한국메탈아산공장','한국미우라공업','한국바이케미칼','한국밸브','한국번디','한국본산','한국분말야금','한국선재','한국소방기구제작소','한국신동공업','한국신문잉크','한국신에츠실리콘','한국씨엔씨','한국씨엔에스팜','한국앤컴퍼니','한국야금','한국야나세','한국야쿠르트','한국에스엠씨','한국에어로','한국오웬스코닝','한국유니온제약','한국유켄공업','한국이엔씨','한국전력기술','한국제지','한국철강','한국컴퓨터','한국콘베어공업','한국콜마','한국큐빅','한국특강','한국특수잉크공업','한국파마','한국팬트라','한국프라스틱','한국피엠지제약','한국하니웰','한국하우톤','한국항공우주산업','한국협화','한국호세코','한국화이바','한국후꼬꾸','한국후지쯔','한누리에프앤디','한동건설','한동산업','한라','한라엔컴','한림건설','한림기계','한림에프앤씨','한림이앤씨','한림종합건설','한립금형강','한맥중공업','한모기술','한미사이언스','한미헬스케어','한발매스테크','한범','한보기공','한빛약품','한빛화학','한샘','한서실업','한서켐','한서화학','한성개발','한성건설','한성공업','한성기업','한성산기','한성시스코','한성아이엠피','한성에프아이','한성크린텍','한성피씨건설','한세실업','한세엠케이','한세예스24홀딩스','한솔섬유','한솔이엠이','한솔테크닉스','한솔페이퍼텍','한스코','한신공영','한신비텍','한아건설','한양','한양로보틱스','한양산업개발','한양이엔지','한양인더스트리','한양티이씨','한얼알앤디','한영','한온시스템이에프코리아','한온시스템이에프피코리아','한온이에프피코리아','한올바이오파마','한우리식품','한원개발','한은이엔씨','한일개발','한일단조공업','한일레미콘','한일병원','한일시멘트','한일정공','한일정밀','한일종합기계','한일카페트','한조','한주','한주금속','한주라이트메탈','한중엔시에스','한진중공업','한진피엘','한창이엔씨','한창제지','한텍','한텍테크놀로지','한토건설','한특이피','한화솔루션','한화첨단소재','한화큐셀앤드첨단소재','한화호텔앤드리조트','합동하이텍그라스','항도레미콘','항도파일','해강건설','해광이엔씨','해동건설','해동종합건설','해성기공','해성산업개발','해솔의료재단','해원산업','해원엠에스씨','해유건설','해창개발','해태제과식품','해피엘앤비','핸즈식스','핸즈코퍼레이션','행복나래','행성사','헨어스','현대리바트','현대삼호중공업','현대석재','현대아산','현대에버다임','현대엔지비','현대엘앤씨','현대종합특수강','현대티엠씨','현대포리텍','현대합성공업','현대해운','현민지브이티','현보','현성오토텍','현성테크노','협력','협성종합건업','협성종합건영','협신','협신하이드로릭','협우설비','형지엘리트','혜림건설','혜명심의료재단','호림종합건설','호반건설','호성이씨','호원','호원오토','홍덕산업','홍원제지','홍진산업기계','화성개발','화성산업','화성엔지니어링','화성엠텍','화승알앤에이','화승티엔드씨','화신엔지니어링','화신정공','화엄토건','화이트팜','화인베스틸','화인인더스트리','화일약품','화일프레스','화진피에프','화진화장품','화천기공','환경이엔지','환영철강공업','환인제약','황성공업','회성','효림이엔아이','효산개발','효성정밀','효성중공업','효원기계','효진오토테크','효진이앤하이','후성정공','휘닉스커뮤니케이션즈','휴먼테크','휴메딕스','휴비츠','휴스코','휴스틸','휴텍','흥국정공','흥아포밍','흥우산업','흥화','히로세코리아']
 };
 
-// ── 자음 바 생성 ──
 const bar=document.getElementById('cho-bar');
 const grpWrap=document.getElementById('cho-groups');
 const keys=Object.keys(ETC);
@@ -433,7 +408,6 @@ function showCho(cho){
   document.getElementById('cho-'+cho).classList.add('show');
 }
 
-// ── 공통 ──
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>10));
 document.getElementById('hbg').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
@@ -486,10 +460,8 @@ function doSearch(q){
     card.style.display=found?'':'none';
     if(found)card.classList.add('open');
   });
-  // 기타 발행사 검색
   let etcFound=0;
   let firstMatchCho=null;
-  // 먼저 모든 etc-item hide 초기화
   document.querySelectorAll('.etc-item').forEach(c=>c.classList.remove('hide'));
   keys.forEach(cho=>{
     const grp=document.getElementById('cho-'+cho);
@@ -498,20 +470,16 @@ function doSearch(q){
     if(matched.length){
       etcFound+=matched.length;
       if(!firstMatchCho)firstMatchCho=cho;
-      // 해당 그룹 표시
       grp.classList.add('show');
-      // 매칭되지 않는 항목 숨김
       grid.querySelectorAll('.etc-item').forEach(item=>{
         item.classList.toggle('hide',!item.dataset.n.toLowerCase().includes(q));
       });
     } else {
-      // 매칭 없는 그룹 숨김
       grp.classList.remove('show');
     }
   });
   if(etcFound>0){
     document.getElementById('etc-section').classList.add('show');
-    // 자음 버튼 활성화
     if(firstMatchCho){
       document.querySelectorAll('.cho-btn').forEach(b=>b.classList.toggle('on',b.dataset.cho===firstMatchCho));
     }
@@ -522,7 +490,6 @@ function doSearch(q){
 
 document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch(e.target.value)});
 
-// 카드 카운트
 document.querySelectorAll('.ig-card').forEach(card=>{
   const cat=card.dataset.cat;if(!cat)return;
   const n=card.querySelectorAll('.co-item').length;
