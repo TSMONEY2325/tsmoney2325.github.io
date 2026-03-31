@@ -36,8 +36,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .nav-links a.on{font-weight:700;color:var(--al)}
 .nav-r{display:flex;align-items:center;gap:9px}
 .nav-tel{font-size:15px;font-weight:700;color:var(--al);text-decoration:none;letter-spacing:.02em;white-space:nowrap}
-.btn-kko{background:#FEE500;color:#3C1E1E;font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:transform .15s,box-shadow .15s}
-.btn-kko:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(254,229,0,.5)}
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
 .hbg span{display:block;width:22px;height:2px;background:var(--w);border-radius:2px}
 .mob{display:none;position:fixed;top:72px;left:0;right:0;z-index:499;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--g2);padding:14px 5vw 18px;flex-direction:column;gap:4px}
@@ -45,7 +43,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .mob a{font-size:15px;font-weight:500;color:var(--text);text-decoration:none;padding:11px 14px;border-radius:10px;transition:background .18s}
 .mob a:hover{background:var(--gp);color:var(--g)}
 .mob .m-tel{margin-top:10px;padding:13px;background:var(--g);border-radius:12px;color:var(--al);font-family:var(--serif);font-size:18px;font-weight:800;text-align:center}
-.mob .m-kko{background:#FEE500;color:#3C1E1E;font-weight:700;font-size:13px;padding:12px;border-radius:12px;text-align:center}
 .pw{padding-top:72px}
 .ph{background:var(--g);padding:60px 5vw 0;text-align:center;position:relative;overflow:hidden}
 .ph::after{content:'';position:absolute;bottom:-100px;right:-60px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(201,148,58,.08);pointer-events:none}
@@ -58,8 +55,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .ph-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:28px 0 48px}
 .btn-a{display:inline-flex;align-items:center;gap:7px;background:var(--a);color:var(--g);font-size:14px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s,box-shadow .15s}
 .btn-a:hover{background:var(--al);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,148,58,.4)}
-.btn-o{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--w);font-size:14px;font-weight:500;padding:12px 24px;border-radius:10px;border:1px solid rgba(255,255,255,.22);text-decoration:none;transition:border-color .2s,background .2s}
-.btn-o:hover{border-color:var(--a);background:rgba(201,148,58,.08)}
 .csec{padding:0 5vw 80px}
 .cw{max-width:920px;margin:0 auto}
 .bc{background:var(--w);border-radius:20px;border:1px solid var(--st);overflow:hidden;margin-bottom:22px;transition:box-shadow .25s}
@@ -84,8 +79,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .bctel:hover{background:var(--gm)}
 .bctel-l{font-size:11px;color:rgba(255,255,255,.48);margin-bottom:5px}
 .bctel-n{font-family:var(--serif);font-size:22px;font-weight:800;color:var(--al);letter-spacing:.03em;display:block}
-.bc-kko{display:flex;align-items:center;justify-content:center;gap:7px;background:#FEE500;color:#3C1E1E;font-size:13px;font-weight:700;padding:12px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .15s}
-.bc-kko:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(254,229,0,.5)}
 .cta{padding:80px 5vw;background:var(--g);text-align:center;position:relative;overflow:hidden}
 .cta::before{content:'';position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,148,58,.08) 0%,transparent 65%)}
 .ctai{position:relative;z-index:1;max-width:520px;margin:0 auto}
@@ -105,11 +98,10 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   .ph-btns{flex-direction:column;align-items:center}
   .ctabtns{flex-direction:column;align-items:center}
   .cta-tel{font-size:32px}
-    }
+}
 footer{background:#06100E;padding:36px 5vw 28px}
 .ft-wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
 .ft-legal{font-size:11px;color:rgba(255,255,255,.55);line-height:2.1}
-
 .ft-nav{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0}
 .ft-nav a{font-size:13px;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;white-space:nowrap}
 .ft-nav a:hover{color:var(--al)}
@@ -127,15 +119,15 @@ footer{background:#06100E;padding:36px 5vw 28px}
   </ul>
   <div class="nav-r">
     <a class="nav-tel" href="tel:02-999-2325">02-999-2325</a>
-    <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" rel="noopener">💬 카카오 상담</a>
     <button class="hbg" id="hbg" aria-label="메뉴"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mob" id="mob">
-  <a href="/">📑 전자어음할인</a><a href="/calculator/">📉 수수료 계산기</a>
-  <a href="/possible/">📋 할인 가능 목록</a><a href="/corporate/">🏢 기업금융</a>
+  <a href="/">📑 전자어음할인</a>
+  <a href="/calculator/">📉 수수료 계산기</a>
+  <a href="/possible/">📋 할인 가능 목록</a>
+  <a href="/corporate/">🏢 기업금융</a>
   <a class="m-tel" href="tel:02-999-2325">📞 02-999-2325</a>
-  <a class="m-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오톡 상담하기</a>
 </div>
 
 <div class="pw">
@@ -147,7 +139,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
     </div>
     <div class="ph-btns">
       <a class="btn-a" href="tel:02-999-2325">📞 02-999-2325 상담하기</a>
-      <a class="btn-o" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" rel="noopener">💬 카카오톡 문의</a>
     </div>
   </div>
 
@@ -210,7 +201,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
       <div class="ctas">평일 09:00 – 18:00 | 서울 명동 위치</div>
       <div class="ctabtns">
         <a class="btn-a" href="tel:02-999-2325">📞 전화 상담하기</a>
-        <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" rel="noopener" style="padding:13px 18px;border-radius:10px;font-size:14px;">💬 카카오톡 상담</a>
       </div>
     </div>
   </section>
