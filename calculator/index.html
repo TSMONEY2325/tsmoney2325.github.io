@@ -36,8 +36,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .nav-links a.on{font-weight:700;color:var(--al)}
 .nav-r{display:flex;align-items:center;gap:9px}
 .nav-tel{font-size:15px;font-weight:700;color:var(--al);text-decoration:none;letter-spacing:.02em;white-space:nowrap}
-.btn-kko{background:#FEE500;color:#3C1E1E;font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:transform .15s,box-shadow .15s}
-.btn-kko:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(254,229,0,.5)}
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
 .hbg span{display:block;width:22px;height:2px;background:var(--w);border-radius:2px}
 .mob{display:none;position:fixed;top:72px;left:0;right:0;z-index:499;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--g2);padding:14px 5vw 18px;flex-direction:column;gap:4px}
@@ -45,7 +43,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .mob a{font-size:15px;font-weight:500;color:var(--text);text-decoration:none;padding:11px 14px;border-radius:10px;transition:background .18s}
 .mob a:hover{background:var(--gp);color:var(--g)}
 .mob .m-tel{margin-top:10px;padding:13px;background:var(--g);border-radius:12px;color:var(--al);font-family:var(--serif);font-size:18px;font-weight:800;text-align:center}
-.mob .m-kko{background:#FEE500;color:#3C1E1E;font-weight:700;font-size:13px;padding:12px;border-radius:12px;text-align:center}
 .pw{padding-top:72px;min-height:100vh}
 .ch{background:var(--g);padding:52px 5vw 0;text-align:center}
 .chi{max-width:600px;margin:0 auto}
@@ -69,7 +66,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
 .rate-input{color:var(--text)!important;caret-color:var(--text)!important;font-family:var(--sans)!important}
-/* ✅ 수정: font-variant-numeric, font-feature-settings 추가 */
 .ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
 .iw input[type=date]:focus{border-color:var(--g);background:var(--w)}
@@ -88,7 +84,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .rm{border-right:1px solid rgba(255,255,255,.12);padding-right:24px}
 .rs{padding-left:24px}
 .rl{font-size:11px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:7px}
-/* ✅ 수정: font-family var(--serif) → var(--sans), font-variant-numeric·font-feature-settings 추가 */
 .rv2{font-family:var(--sans);font-size:28px;font-weight:800;color:var(--al);line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .rv2.fee{font-size:22px;color:rgba(255,255,255,.85)}
 .rd{background:var(--gp);padding:14px 28px;display:flex;gap:16px;flex-wrap:wrap}
@@ -133,15 +128,15 @@ footer{background:#06100E;padding:36px 5vw 28px}
   </ul>
   <div class="nav-r">
     <a class="nav-tel" href="tel:02-999-2325">02-999-2325</a>
-    <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오 상담</a>
     <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mob" id="mob">
-  <a href="/">📑 전자어음할인</a><a href="/calculator/">📉 수수료 계산기</a>
-  <a href="/possible/">📋 할인 가능 목록</a><a href="/corporate/">🏢 기업금융</a>
+  <a href="/">📑 전자어음할인</a>
+  <a href="/calculator/">📉 수수료 계산기</a>
+  <a href="/possible/">📋 할인 가능 목록</a>
+  <a href="/corporate/">🏢 기업금융</a>
   <a class="m-tel" href="tel:02-999-2325">📞 02-999-2325</a>
-  <a class="m-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오톡 상담하기</a>
 </div>
 
 <div class="pw">
@@ -226,7 +221,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
       </div>
       <div class="ctastrip-btns">
         <a class="btn-a" href="tel:02-999-2325">📞 02-999-2325</a>
-        <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" style="padding:13px 16px;border-radius:10px;">💬 카카오 상담</a>
       </div>
     </div>
   </div>
