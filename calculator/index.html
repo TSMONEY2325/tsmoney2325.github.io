@@ -1,3 +1,10 @@
+**✅ 수정된 내용 (calculator/index.html)**
+
+- `.rate-input`에 `-webkit-text-fill-color` 추가 (Android WebKit 폰트 혼용 방지)
+
+---
+
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -65,7 +72,16 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .iw input[type=number]{width:100%;padding:12px 44px 12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:16px;font-weight:600;font-family:var(--sans);color:transparent;caret-color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;-moz-appearance:textfield}
 .iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
-.rate-input{color:var(--text)!important;caret-color:var(--text)!important;font-family:var(--sans)!important}
+/* ✅ 수정: -webkit-text-fill-color 추가 */
+.rate-input{
+  color:var(--text)!important;
+  caret-color:var(--text)!important;
+  font-family:'Pretendard','Apple SD Gothic Neo',sans-serif!important;
+  font-variant-numeric:tabular-nums lining-nums!important;
+  font-feature-settings:"tnum" 1,"lnum" 1!important;
+  -webkit-font-feature-settings:"tnum" 1,"lnum" 1!important;
+  -webkit-text-fill-color:var(--text)!important;
+}
 .ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
 .iw input[type=date]:focus{border-color:var(--g);background:var(--w)}
@@ -263,3 +279,4 @@ document.getElementById('mdate').min=new Date().toISOString().split('T')[0];
 </script>
 </body>
 </html>
+```
