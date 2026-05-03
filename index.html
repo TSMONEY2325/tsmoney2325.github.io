@@ -7,7 +7,10 @@
   if (window.location.hostname === 'tsmoney2325.github.io') {
     // 2. 타이틀이나 내용 수정 없이, 주소만 tsmoney.kr로 즉시 강제 전환
     window.location.replace('https://tsmoney.kr' + window.location.pathname + window.location.search);
-  }
+  } else {
+  // tsmoney.kr 접속 시 → index 허용
+  document.write('<meta name="robots" content="index, follow">');
+}
 </script>
   
 <meta name="naver-site-verification" content="5b03cce1c226157c54e9c5a42698dce1a7f0c3c6" />
@@ -24,7 +27,7 @@
 <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tsmoney.kr/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tsmoney.kr/">
