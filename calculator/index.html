@@ -75,17 +75,27 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   border-radius:10px;
   font-size:16px;
   font-weight:600;
-  font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  
+  font-family:'Pretendard','Roboto','Noto Sans KR',sans-serif;
+  
   color:var(--text);
   -webkit-text-fill-color:var(--text);
   caret-color:var(--text);
+  
   background:var(--off);
   outline:none;
+  
   transition:border-color .2s,background .2s;
-  font-variant-numeric:tabular-nums lining-nums;
-  font-feature-settings:"tnum" 1,"lnum" 1;
-  -webkit-font-feature-settings:"tnum" 1,"lnum" 1;
-  text-rendering:geometricPrecision;
+  
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+
+  -webkit-font-smoothing:antialiased;
+
+  appearance:none;
+  -webkit-appearance:none;
+
+  transform:translateZ(0);
 }
 .rate-input:focus{border-color:var(--g);background:var(--w)}
 .ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
