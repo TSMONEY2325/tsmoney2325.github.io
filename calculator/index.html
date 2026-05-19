@@ -66,11 +66,11 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .iw input[type=number]{width:100%;padding:12px 44px 12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:16px;font-weight:600;font-family:var(--sans);color:transparent;caret-color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;-moz-appearance:textfield}
 .iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
-/* ✅ 수정: 삼성 브라우저 소수점 폰트 렌더링 버그 완전 방어 */
+/* 최종 수정: 테두리 1px 복원 및 삼성 브라우저 버그 완벽 방어 */
 .rate-input {
   width: 100%;
-  padding: 12px 44px 12px 15px; [cite: 4]
-  border: 1.5px solid var(--g2);
+  padding: 12px 44px 12px 15px;
+  border: 1px solid var(--g2); /* 1.5px에서 기존 순정 1px로 복원 */
   border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
@@ -84,7 +84,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   
   background: var(--off);
   outline: none;
-  transition: border-color .2s, background .2s; [cite: 5]
+  transition: border-color .2s, background .2s;
   
   /* 숫자와 소수점의 가로 폭을 완전히 고정하여 폰트 뒤틀림 방지 */
   font-variant-numeric: tabular-nums;
@@ -93,10 +93,10 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   -webkit-font-smoothing: antialiased;
   appearance: none;
   -webkit-appearance: none;
-  transform: translateZ(0);
+  /* 시각적 왜곡을 주는 하드웨어 가속 transform 속성 제거 */
 }
   
-/* ✅ 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
+/* 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
 .samsung .rate-input {
   font-family: sans-serif !important;
 }
