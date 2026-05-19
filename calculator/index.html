@@ -66,41 +66,40 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .iw input[type=number]{width:100%;padding:12px 44px 12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:16px;font-weight:600;font-family:var(--sans);color:transparent;caret-color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;-moz-appearance:textfield}
 .iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
-/* ✅ 수정: type=text로 변경하여 폰트 완전 제어 */
-.rate-input{
-  width:100%;
-  padding:12px 44px 12px 15px;
-  border:1.5px solid var(--g2);
-  border-radius:10px;
-  font-size:16px;
-  font-weight:600;
+/* ✅ 수정: 삼성 브라우저 소수점 폰트 렌더링 버그 완전 방어 */
+.rate-input {
+  width: 100%;
+  padding: 12px 44px 12px 15px; [cite: 4]
+  border: 1.5px solid var(--g2);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
   
-  font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  /* 삼성 브라우저의 자체 폰트 왜곡을 막기 위해 안드로이드 시스템 기본 서체 지정 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
-  color:var(--text);
-  -webkit-text-fill-color:var(--text);
-  caret-color:var(--text);
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
   
-  background:var(--off);
-  outline:none;
+  background: var(--off);
+  outline: none;
+  transition: border-color .2s, background .2s; [cite: 5]
   
-  transition:border-color .2s,background .2s;
-  
-  font-variant-numeric:tabular-nums;
-  font-feature-settings:"tnum" 1;
+  /* 숫자와 소수점의 가로 폭을 완전히 고정하여 폰트 뒤틀림 방지 */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 
-  -webkit-font-smoothing:antialiased;
-
-  appearance:none;
-  -webkit-appearance:none;
-
-  transform:translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  appearance: none;
+  -webkit-appearance: none;
+  transform: translateZ(0);
 }
   
-.samsung .rate-input{
-  font-family:'Noto Sans KR','Malgun Gothic',sans-serif;
+/* ✅ 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
+.samsung .rate-input {
+  font-family: sans-serif !important;
 }
-  
 .rate-input:focus{border-color:var(--g);background:var(--w)}
 .ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
