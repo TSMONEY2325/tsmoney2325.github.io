@@ -95,7 +95,13 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   -webkit-appearance: none;
   /* 시각적 왜곡을 주는 하드웨어 가속 transform 속성 제거 */
 }
-  
+
+#rate::placeholder,
+#rate::-webkit-input-placeholder {
+  color: var(--g2) !important;
+  -webkit-text-fill-color: var(--g2) !important;
+}
+
 /* 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
 .samsung .rate-input {
   font-family: sans-serif !important;
