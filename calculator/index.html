@@ -96,10 +96,16 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   /* 시각적 왜곡을 주는 하드웨어 가속 transform 속성 제거 */
 }
 
+/* ✅ 최종 수정: '예: 0.7'을 포함한 세 칸 전체의 기본 안내 글자색을 100% 동기화 */
+#amt-raw::placeholder,
 #rate::placeholder,
-#rate::-webkit-input-placeholder {
-  color: var(--g2) !important;
-  -webkit-text-fill-color: var(--g2) !important;
+#days-raw::placeholder,
+#amt-raw::-webkit-input-placeholder,
+#rate::-webkit-input-placeholder,
+#days-raw::-webkit-input-placeholder {
+  color: #767676 !important; /* 크롬/삼성인터넷 표준 안내문 회색으로 강제 고정 */
+  -webkit-text-fill-color: #767676 !important;
+  opacity: 1 !important;
 }
 
 /* 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
