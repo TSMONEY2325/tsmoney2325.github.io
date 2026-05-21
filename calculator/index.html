@@ -294,205 +294,31 @@ footer{background:#06100E;padding:36px 5vw 28px}
 </footer>
 
 <script>
-// =================================================================
-// 🎯 대한민국 공공데이터 오픈API 설정 (한국천문연구원 특일정보) 및 실시간 동기화 엔진
-// =================================================================
-const SERVICE_KEY = '641a67d760367e3ce6589fa07515403c85276d20ded369575c25f24d2cbb91dd'; 
-let cachedHolidays = new Set(); // 중복 조회를 막고 구동 속도를 번개처럼 유지하기 위한 캐시 메모리
-let lastFetchDate = '';         // 실시간 연중 휴일 변동 대응을 위한 접속일 도장 변수
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>10));
+document.getElementById('hbg').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// YYYY-MM-DD 형식의 날짜가 공휴일인지 확인하는 함수 (API 실시간 호출 연동)
-async function fetchHolidays(year) {
-    const todayStr = new Date().toISOString().slice(0,10); // 접속한 오늘 날짜 (예: '2026-05-21')
-    
-    // 보완: 오늘 이미 최신 장부를 한 번 읽었다면 패스, 날이 바뀌었거나 새로고침하면 실시간 재조회
-    if (lastFetchDate === todayStr) return; 
-    
-    try {
-        // 정부 오픈API 호출 (설날, 추석, 대체공휴일, 제헌절, 근로자의날 등 전수 수집)
-        const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${SERVICE_KEY}&solYear=${year}&_type=json&numOfRows=100`;
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        const items = data?.response?.body?.items?.item;
-        if (!items) return;
-        
-        // 날이 바뀌어 새로 접속한 경우 기존 캐시 바구니를 비워 데이터 적재 결함 방지
-        if (lastFetchDate !== todayStr) cachedHolidays.clear();
-
-        const processItem = (item) => {
-            if (item.isHoliday === 'Y') {
-                // YYYYMMDD 단위를 YYYY-MM-DD 기계적 서식으로 변환하여 매칭 허용
-                const locdate = String(item.locdate);
-                const formattedDate = `${locdate.substring(0,4)}-${locdate.substring(4,6)}-${locdate.substring(6,8)}`;
-                cachedHolidays.add(formattedDate);
-            }
-        };
-
-        if (Array.isArray(items)) {
-            items.forEach(processItem);
-        } else {
-            processItem(items);
-        }
-        
-        // 조회가 성공하면 오늘 날짜로 도장을 찍어 당일 재접속 시에는 무조건 무부하 캐시 모드 가동
-        lastFetchDate = todayStr; 
-        
-    } catch (e) {
-        console.error("정부 API 통신 지연 - 자체 시스템 예외 처리 모드 가동", e);
-    }
+// ✅ 수정: 숫자·소수점만 허용, 소수점 중복 방지
+function filterRate(el){
+  let v=el.value.replace(/[^0-9.]/g,'');
+  const parts=v.split('.');
+  if(parts.length>2)v=parts[0]+'.'+parts.slice(1).join('');
+  if(parseFloat(v)>20)v='20';
+  el.value=v;
 }
 
-// 해당 날짜가 토요일, 일요일 또는 법정 공휴일인지 종합 판단하는 필터링 함수
-function isBankHoliday(dateObj) {
-    const day = dateObj.getDay();
-    if (day === 0 || day === 6) return true; // 1차 필터링: 토요일(6), 일요일(0)은 주말 휴일 무조건 판정
-    
-    // 2차 필터링: 정부 API 장부에 등록된 최신 빨간 날 데이터와 실시간 대조
-    const yyyy = dateObj.getFullYear();
-    const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-    const dd = String(dateObj.getDate()).padStart(2, '0');
-    const dateStr = `${yyyy}-${mm}-${dd}`;
-    
-    return cachedHolidays.has(dateStr);
-}
-
-// 🔄 만기일 휴일 루프 보정 엔진 (평일이 나올 때까지 멱살 잡고 +1일 전진 연산)
-function getFinalWorkingDate(targetDateStr) {
-    let matDate = new Date(targetDateStr);
-    matDate.setHours(0,0,0,0);
-    
-    let addedDays = 0;
-
-    // 핵심 연쇄 루프: 휴일/주말인 동안 평일이 나타날 때까지 계속 하루씩 더함 (일력 무력화 핵심)
-    while (isBankHoliday(matDate)) {
-        matDate.setDate(matDate.getDate() + 1);
-        addedDays++;
-    }
-
-    const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
-    
-    return {
-        isAdjusted: addedDays > 0,
-        originalDateStr: targetDateStr,
-        finalDateObj: matDate,
-        finalDateStr: `${matDate.getFullYear()}-${String(matDate.getMonth()+1).padStart(2,'0')}-${String(matDate.getDate()).padStart(2,'0')}`,
-        finalDayOfWeek: weekDays[matDate.getDay()],
-        addedDays: addedDays
-    };
-}
-
-// =================================================================
-// 📊 계산기 내부 구동 시스템 및 입출력 인터페이스 제어 엔진
-// =================================================================
-let mode = 'date';
-
-function setMode(m) {
-    mode = m;
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.input-group').forEach(g => g.classList.remove('active'));
-    
-    if(m === 'date') {
-        document.getElementById('t-date').classList.add('active');
-        document.getElementById('g-date').classList.add('active');
-    } else {
-        document.getElementById('t-days').classList.add('active');
-        document.getElementById('g-days').classList.add('active');
-    }
-    calc();
-}
-
-function fmt(n) {
-    return new Intl.NumberFormat('ko-KR').format(Math.floor(n));
-}
-
-function parseAmt(v) {
-    const clean = v.replace(/[^0-9]/g, '');
-    return clean ? parseFloat(clean) : 0;
-}
-
-function updateAmtInput(el) {
-    const val = parseAmt(el.value);
-    el.value = val > 0 ? fmt(val) : '';
-    document.getElementById('amt-raw').value = val;
-    calc();
-}
-
-// 달력에서 날짜를 바꿨을 때 실시간으로 호출되는 금융 보정 및 문구 분기 함수
-async function updateDaysFromDate() {
-    const d = document.getElementById('mdate').value;
-    if (!d) return;
-
-    const matYear = new Date(d).getFullYear();
-    await fetchHolidays(matYear); // 만기일 해당 연도의 공휴일 데이터 즉시 최신화 호출
-    
-    const today = new Date();
-    today.setHours(0,0,0,0);
-
-    // 🚀 휴일 연산 및 보정 기동
-    const dateMeta = getFinalWorkingDate(d);
-    const finalMat = dateMeta.finalDateObj;
-    
-    // 오늘부터 보정된 영업 만기일까지의 실제 할인 일수 기계적 연산
-    const diff = Math.ceil((finalMat - today) / 86400000) + 1;
-    const el = document.getElementById('days-info');
-
-    if (diff <= 0) {
-        el.textContent = '⚠️ 만기일이 오늘보다 이전입니다';
-        el.className = 'fh err';
-        document.getElementById('res').classList.remove('show');
-        return;
-    }
-
-    // 🎯 사장님 오더: 평일/휴일 상태에 따른 출력 문구 자동 분기 포맷팅 완벽 적용
-    if (!dateMeta.isAdjusted) {
-        // Case A: 만기일이 금융기관 정상 영업 평일인 경우
-        el.textContent = `선택하신 만기일(${dateMeta.originalDateStr})은 오늘부터 총 ${diff}일입니다.`;
-    } else {
-        // Case B: 만기일이 토/일/공휴일이어서 다음 정상 영업일로 가산된 경우
-        el.textContent = `선택하신 만기일(${dateMeta.originalDateStr})은 휴일이어서 다음 은행 영업일인 ${dateMeta.finalDateStr}(${dateMeta.finalDayOfWeek}요일)로 ${dateMeta.addedDays}일이 가산되어 오늘부터 총 ${diff}일입니다.`;
-    }
-    
-    el.className = 'fh';
-    calc();
-}
-
-function getAmt() { return parseFloat(document.getElementById('amt-raw').value) || 0; }
-function getRate() { return parseFloat(document.getElementById('rate').value) || 0; }
-
-// 수수료 계산 시 호출되는 최종 정산 일수 가중치 산출 함수
-function getDays() {
-    if (mode === 'days') return parseInt(document.getElementById('days-raw').value) || 0;
-    const d = document.getElementById('mdate').value;
-    if (!d) return 0;
-    
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    
-    const dateMeta = getFinalWorkingDate(d);
-    return Math.max(0, Math.ceil((dateMeta.finalDateObj - today) / 86400000) + 1);
-}
-
-// 최종 실수령액 및 수수료 실시간 표출 처리부
-function calc() {
-    const amt = getAmt(), rate = getRate(), days = getDays();
-    if (amt <= 0 || rate <= 0 || days <= 0) {
-        document.getElementById('res').classList.remove('show');
-        return;
-    }
-    
-    // 금융권 표준 할인료 공식: 금액 * (월할인율/100) * (일수/30)
-    const fee = amt * (rate / 100) * days / 30;
-    const net = amt - fee;
-    
-    document.getElementById('r-net').textContent = fmt(net) + '원';
-    document.getElementById('r-amt').textContent = fmt(amt) + '원';
-    document.getElementById('r-rate').textContent = rate + '%';
-    document.getElementById('r-days').textContent = days + '일';
-    document.getElementById('r-fee').textContent = fmt(fee) + '원';
-    
-    document.getElementById('res').classList.add('show');
-}
+let mode='days';
+function setMode(m){mode=m;document.getElementById('btn-days').classList.toggle('on',m==='days');document.getElementById('btn-date').classList.toggle('on',m==='date');document.getElementById('df-days').classList.toggle('hide',m==='date');document.getElementById('df-date').classList.toggle('show',m==='date');document.getElementById('res').classList.remove('show')}
+function fmt(n){return Math.round(n).toLocaleString('ko-KR')}
+function updateAmt(){const v=parseFloat(document.getElementById('amt-raw').value);const ov=document.getElementById('amt-ov');const hint=document.getElementById('amt-hint');if(!v||v<=0){ov.textContent='';hint.textContent='';return;}ov.textContent=fmt(v);hint.textContent='입력금액: '+fmt(v)+'원'}
+function updateDays(){const v=parseInt(document.getElementById('days-raw').value);document.getElementById('days-ov').textContent=v>0?fmt(v):''}
+function calcDate(){const d=document.getElementById('mdate').value;if(!d)return;const today=new Date();today.setHours(0,0,0,0);const mat=new Date(d);mat.setHours(0,0,0,0);const diff=Math.ceil((mat-today)/86400000)+1;const el=document.getElementById('days-info');if(diff<=0){el.textContent='⚠️ 만기일이 오늘보다 이전입니다';el.className='fh err';document.getElementById('res').classList.remove('show');return;}el.textContent='오늘부터 계산하여 '+fmt(diff)+'일 남음';el.className='fh';calc()}
+function getAmt(){return parseFloat(document.getElementById('amt-raw').value)||0}
+function getRate(){return parseFloat(document.getElementById('rate').value)||0}
+function getDays(){if(mode==='days')return parseInt(document.getElementById('days-raw').value)||0;const d=document.getElementById('mdate').value;if(!d)return 0;const today=new Date();today.setHours(0,0,0,0);const mat=new Date(d);mat.setHours(0,0,0,0);return Math.max(0,Math.ceil((mat-today)/86400000)+1)}
+function calc(){const amt=getAmt(),rate=getRate(),days=getDays();if(amt<=0||rate<=0||days<=0){document.getElementById('res').classList.remove('show');return;}const fee=amt*(rate/100)*days/30,net=amt-fee;document.getElementById('r-net').textContent=fmt(net)+'원';document.getElementById('r-fee').textContent=fmt(fee)+'원';document.getElementById('c-amt').textContent=fmt(amt)+'원';document.getElementById('c-rate').textContent=rate+'%';document.getElementById('c-days').textContent=fmt(days)+'일';document.getElementById('res').classList.add('show')}
+document.getElementById('mdate').min=new Date().toISOString().split('T')[0];
 </script>
 </body>
 </html>
