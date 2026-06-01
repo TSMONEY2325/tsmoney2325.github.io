@@ -36,6 +36,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .nav-links a.on{font-weight:700;color:var(--al)}
 .nav-r{display:flex;align-items:center;gap:9px}
 .nav-tel{font-size:15px;font-weight:700;color:var(--al);text-decoration:none;letter-spacing:.02em;white-space:nowrap}
+.btn-kko{background:#FEE500;color:#3C1E1E;font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap}
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
 .hbg span{display:block;width:22px;height:2px;background:var(--w);border-radius:2px}
 .mob{display:none;position:fixed;top:72px;left:0;right:0;z-index:499;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--g2);padding:14px 5vw 18px;flex-direction:column;gap:4px}
@@ -43,6 +44,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .mob a{font-size:15px;font-weight:500;color:var(--text);text-decoration:none;padding:11px 14px;border-radius:10px}
 .mob a:hover{background:var(--gp);color:var(--g)}
 .mob .m-tel{margin-top:10px;padding:13px;background:var(--g);border-radius:12px;color:var(--al);font-family:var(--serif);font-size:18px;font-weight:800;text-align:center}
+.mob .m-kko{background:#FEE500;color:#3C1E1E;font-weight:700;font-size:13px;padding:12px;border-radius:12px;text-align:center}
 .pw{padding-top:72px}
 .ph{background:var(--g);padding:52px 5vw 0;text-align:center}
 .phi{max-width:640px;margin:0 auto}
@@ -91,6 +93,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
   </ul>
   <div class="nav-r">
     <a class="nav-tel" href="tel:02-999-2325">02-999-2325</a>
+    <a class="btn-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank" rel="noopener">💬 카카오 상담</a>
     <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -101,7 +104,8 @@ footer{background:#06100E;padding:36px 5vw 28px}
   <a href="/corporate/">🏢 기업금융</a>
   <a href="/news/">📰 전자어음 뉴스</a>
   <a class="m-tel" href="tel:02-999-2325">📞 02-999-2325</a>
- </div>
+  <a class="m-kko" href="https://open.kakao.com/o/s8YmMcOc" target="_blank">💬 카카오톡 상담하기</a>
+</div>
 
 <div class="pw">
   <div class="ph">
@@ -109,13 +113,46 @@ footer{background:#06100E;padding:36px 5vw 28px}
       <div class="pey">News</div>
       <h1>전자어음 <em>최신 뉴스</em></h1>
       <p>전자어음 관련 최신 뉴스와 시장 동향을 확인하세요.</p>
-      <div class="updated">최종 업데이트: 2026년 05월 25일 12:56</div>
+      <div class="updated">최종 업데이트: 2026년 06월 01일 13:11</div>
     </div>
   </div>
   <div class="nsec">
     <div class="nw">
       <div class="news-grid">
         
+        <article class="news-card rv">
+          <div class="news-meta">
+            <span class="news-source">fntimes.com</span>
+            <span class="news-date">2026.06.01</span>
+          </div>
+          <h3 class="news-title">
+            <a href="http://www.fntimes.com/html/view.php?ud=202605300118444539dd55077bc2_18" target="_blank" rel="noopener">채병득號 금결원, AI·디지털자산 대응 ‘만전’ [금융결제원 40주년]</a>
+          </h3>
+          <p class="news-summary">금융결제원은 이후 인터넷지로, 전자금융공동망, 전자어음, 전자채권, 외환동시결제(CLS), CMS(Cash Management Service) 공동망 등 다양한 금융 인프라를 구축하며 국내 지급결제 체계 전반을 고도화해 왔다. 금융권에서는......</p>
+          <a href="http://www.fntimes.com/html/view.php?ud=202605300118444539dd55077bc2_18" target="_blank" rel="noopener" class="news-link">원문 보기 →</a>
+        </article>
+        <article class="news-card rv">
+          <div class="news-meta">
+            <span class="news-source">newslock.co.kr</span>
+            <span class="news-date">2026.05.29</span>
+          </div>
+          <h3 class="news-title">
+            <a href="http://www.newslock.co.kr/news/articleView.html?idxno=130714" target="_blank" rel="noopener">[뉴스락 탐사보도┃김석준 쌍용건설 회장 '900억 횡령 의혹'의 불편한 진...</a>
+          </h3>
+          <p class="news-summary">특히 대주단이 승인한 PF 자금과 실제 완성공사액 사이에 큰 차이가 발생했고, 그 차액 상당 부분이 B2B 전자어음 방식으로 처리된 정황이 확인되면서 업계 안팎에서는 &quot;통상적인 PF 사업 구조와 맞는지 따져볼 필요가......</p>
+          <a href="http://www.newslock.co.kr/news/articleView.html?idxno=130714" target="_blank" rel="noopener" class="news-link">원문 보기 →</a>
+        </article>
+        <article class="news-card rv">
+          <div class="news-meta">
+            <span class="news-source">intn.co.kr</span>
+            <span class="news-date">2026.05.29</span>
+          </div>
+          <h3 class="news-title">
+            <a href="http://www.intn.co.kr/news/articleView.html?idxno=2051017" target="_blank" rel="noopener">국세청, 전자어음 거래정보 등 제출자료 확대</a>
+          </h3>
+          <p class="news-summary">개정안에 따르면 신규 과세자료 제출 대상에는 ▲숙박업 영업신고를 하지 않은 자에 대한 행정제재처분 자료 ▲출입항 신고자료 및 승선자 명부 ▲전자어음관리기관에 등록된 전자어음 거래정보 자료 등 3종이 추가됐다.......</p>
+          <a href="http://www.intn.co.kr/news/articleView.html?idxno=2051017" target="_blank" rel="noopener" class="news-link">원문 보기 →</a>
+        </article>
         <article class="news-card rv">
           <div class="news-meta">
             <span class="news-source">newstomato.com</span>
