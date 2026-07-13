@@ -6,6 +6,8 @@
 <title>전자어음할인 수수료 계산기 — 실수령액·할인료 즉시 계산 | 태성투자대부</title>
 <meta name="description" content="전자어음할인 수수료와 실수령액을 즉시 계산하세요. 어음금액·월할인율·만기일 입력만으로 할인료와 실수령액 바로 확인. ☎ 02-999-2325">
 <meta name="keywords" content="전자어음할인계산기,어음할인수수료계산기,전자어음실수령액계산,어음할인율계산기,전자어음할인료계산,전자어음할인수수료계산,어음할인이자계산기,전자어음만기일계산,어음할인금액계산,전자어음할인금리계산,어음할인실수령액,전자어음수수료계산,어음할인비용계산,전자어음이자계산,어음할인계산방법,전자어음할인계산공식,어음할인율계산방법,전자어음할인금액계산기,전자어음할인무료계산기,어음할인만기일계산기,전자어음할인월할인율계산,어음할인수수료얼마,전자어음할인실수령액얼마,어음할인료계산방법,전자어음할인수수료율,어음할인이자율계산,전자어음할인비용계산기,어음할인금리계산기,전자어음할인일수계산,어음할인금액실수령">
+
+
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tsmoney.kr/calculator/">
 <meta property="og:title" content="전자어음할인 수수료 계산기 — 실수령액 즉시 계산">
@@ -18,8 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tsmoney.kr/assets/calculator.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet"><style>
 :root{--g:#1B3A6B;--gm:#16336B;--gl:#1A56C4;--gp:#E8F0FB;--a:#E8B800;--al:#FEE500;--w:#fff;--off:#F6F3EE;--st:#EAE5DC;--g2:#DDD8CF;--g4:#A5A09A;--g6:#6A6560;--text:#1A1714;--serif:'Nanum Myeongjo',Georgia,serif;--sans:'Pretendard','Apple SD Gothic Neo',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -65,7 +66,52 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .iw input[type=number]{width:100%;padding:12px 44px 12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:16px;font-weight:600;font-family:var(--sans);color:transparent;caret-color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;-moz-appearance:textfield}
 .iw input[type=number]::-webkit-inner-spin-button,.iw input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .iw input[type=number]:focus{border-color:var(--g);background:var(--w)}
-.rate-input{width:100%;padding:12px 44px 12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:16px;font-weight:600;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--text);-webkit-text-fill-color:var(--text);caret-color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1;text-rendering:geometricPrecision}
+/* 최종 수정: 테두리 1px 복원 및 삼성 브라우저 버그 완벽 방어 */
+.rate-input {
+  width: 100%;
+  padding: 12px 44px 12px 15px;
+  border: 1px solid var(--g2); /* 1.5px에서 기존 순정 1px로 복원 */
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  
+  /* 삼성 브라우저의 자체 폰트 왜곡을 막기 위해 안드로이드 시스템 기본 서체 지정 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  
+  background: var(--off);
+  outline: none;
+  transition: border-color .2s, background .2s;
+  
+  /* 숫자와 소수점의 가로 폭을 완전히 고정하여 폰트 뒤틀림 방지 */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+
+  -webkit-font-smoothing: antialiased;
+  appearance: none;
+  -webkit-appearance: none;
+  /* 시각적 왜곡을 주는 하드웨어 가속 transform 속성 제거 */
+}
+
+/* ✅ 최종 수정: '예: 0.7'을 포함한 세 칸 전체의 기본 안내 글자색을 100% 동기화 */
+#amt-raw::placeholder,
+#rate::placeholder,
+#days-raw::placeholder,
+#amt-raw::-webkit-input-placeholder,
+#rate::-webkit-input-placeholder,
+#days-raw::-webkit-input-placeholder {
+  color: #767676 !important; /* 크롬/삼성인터넷 표준 안내문 회색으로 강제 고정 */
+  -webkit-text-fill-color: #767676 !important;
+  opacity: 1 !important;
+}
+
+/* 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
+.samsung .rate-input {
+  font-family: sans-serif !important;
+}
 .rate-input:focus{border-color:var(--g);background:var(--w)}
 .ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
@@ -168,6 +214,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
           <div class="f">
             <label>월 할인율</label>
             <div class="iw">
+              <!-- ✅ 수정: type="text" + inputmode="decimal" 로 변경 -->
               <input type="text" inputmode="decimal" id="rate" class="rate-input" placeholder="예: 0.7" oninput="filterRate(this);calc()">
               <span class="unit">%</span>
             </div>
@@ -187,7 +234,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
             <div class="fh" id="days-info">날짜를 선택하면 일수가 자동 계산됩니다</div>
           </div>
         </div>
-        <button class="cbtn" onclick="calc()">📊 수수료 및 실수령액 계산하기</button>
+       
         <div class="res" id="res">
           <div class="rt">
             <div class="rm"><div class="rl">실수령액</div><div class="rv2" id="r-net"></div></div>
@@ -230,12 +277,12 @@ footer{background:#06100E;padding:36px 5vw 28px}
 <footer>
   <div class="ft-wrap">
     <div class="ft-legal">
-      상호 : 태성투자대부 | 대표자명 : 신현수 | 주소 : 서울 중구 명동2길 57 태평양빌딩 506-1호<br>
-      사업자등록번호 : 187-02-02861 | 대부업등록번호 : 2019-서울중구-0048<br>
-      등록지자체 : 서울시 중구청(02-3396-5697) | 연이자율 최대 20% | 연체이자율 최대 20%<br>
-      이자 외 추가비용 X | 조기상환수수료 X | 중개수수료 요구 및 수취는 불법입니다.<br>
-      "과도한 빚, 고통의 시작입니다." &nbsp; "대출 시 귀하의 신용등급이 하락할 수 있습니다."
-    </div>
+  상호 : 태성투자대부 | 대표자명 : 신현수 | 주소 : 서울 중구 명동2길 57 태평양빌딩 506-1호<br>
+  사업자등록번호 : 187-02-02861 | 대부업등록번호 : 2019-서울중구-0048<br>
+  등록지자체 : 서울시 중구청(02-3396-5697) | 연이자율 최대 20% | 연체이자율 최대 20%<br>
+  이자 외 추가비용 X | 조기상환수수료 X | 중개수수료 요구 및 수취는 불법입니다.<br>
+  "과도한 빚, 고통의 시작입니다." &nbsp; "대출 시 귀하의 신용등급이 하락할 수 있습니다."
+</div>
     <div class="ft-nav">
       <a href="/">전자어음할인</a>
       <a href="/calculator/">수수료 계산기</a>
@@ -252,6 +299,90 @@ document.getElementById('hbg').addEventListener('click',()=>document.getElementB
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
+// =================================================================
+// 🎯 대한민국 공공데이터 오픈API 설정 및 실시간 캐시 엔진
+// =================================================================
+const SERVICE_KEY = '641a67d760367e3ce6589fa07515403c85276d20ded369575c25f24d2cbb91dd'; 
+let cachedHolidays = new Set(); 
+let lastFetchDate = '';         
+
+// 백그라운드 비동기 API 데이터 수집 엔진 (브라우저 멈춤 방지)
+function fetchHolidays(year) {
+  const todayStr = new Date().toISOString().slice(0,10);
+  if (lastFetchDate === todayStr) return; 
+
+  const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${SERVICE_KEY}&solYear=${year}&_type=json&numOfRows=100`;
+  
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const items = data?.response?.body?.items?.item;
+      if (!items) return;
+      
+      if (lastFetchDate !== todayStr) cachedHolidays.clear();
+
+      const processItem = (item) => {
+        if (item.isHoliday === 'Y') {
+          const locdate = String(item.locdate);
+          const formattedDate = `${locdate.substring(0,4)}-${locdate.substring(4,6)}-${locdate.substring(6,8)}`;
+          cachedHolidays.add(formattedDate);
+        }
+      };
+
+      if (Array.isArray(items)) {
+        items.forEach(processItem);
+      } else {
+        processItem(items);
+      }
+      lastFetchDate = todayStr;
+      
+      // 국무회의 등 실시간 데이터 동기화 완료 즉시 화면 리렌더링
+      if (mode === 'date') {
+        calcDate(); 
+      }
+    })
+    .catch(e => console.error("정부 API 통신 지연", e));
+}
+
+// 주말 및 공휴일 종합 판정 1·2차 필터
+function isBankHoliday(dateObj) {
+  const day = dateObj.getDay();
+  if (day === 0 || day === 6) return true; // 토요일, 일요일 무조건 필터링
+  
+  const yyyy = dateObj.getFullYear();
+  const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const dd = String(dateObj.getDate()).padStart(2, '0');
+  const dateStr = `${yyyy}-${mm}-${dd}`;
+  
+  return cachedHolidays.has(dateStr);
+}
+
+// 🔄 만기일 연쇄 휴일 검증 루프 (평일이 나올 때까지 멱살 잡고 전진)
+function getFinalWorkingDate(targetDateStr) {
+  let matDate = new Date(targetDateStr);
+  matDate.setHours(0,0,0,0);
+  let addedDays = 0;
+
+  while (isBankHoliday(matDate)) {
+    matDate.setDate(matDate.getDate() + 1);
+    addedDays++;
+  }
+
+  const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+  
+  return {
+    isAdjusted: addedDays > 0,
+    originalDateStr: targetDateStr,
+    finalDateObj: matDate,
+    finalDateStr: `${matDate.getFullYear()}-${String(matDate.getMonth()+1).padStart(2,'0')}-${String(matDate.getDate()).padStart(2,'0')}`,
+    finalDayOfWeek: weekDays[matDate.getDay()],
+    addedDays: addedDays
+  };
+}
+
+// =================================================================
+// 📊 순정 계산기 기능 복원 및 조건부 타격 가중치 제어
+// =================================================================
 function filterRate(el){
   let v=el.value.replace(/[^0-9.]/g,'');
   const parts=v.split('.');
@@ -260,24 +391,107 @@ function filterRate(el){
   el.value=v;
 }
 
-let mode='days';
-function setMode(m){mode=m;document.getElementById('btn-days').classList.toggle('on',m==='days');document.getElementById('btn-date').classList.toggle('on',m==='date');document.getElementById('df-days').classList.toggle('hide',m==='date');document.getElementById('df-date').classList.toggle('show',m==='date');document.getElementById('res').classList.remove('show')}
-function fmt(n){return n.toLocaleString('ko-KR')}
-function updateAmt(){const v=parseFloat(document.getElementById('amt-raw').value);const ov=document.getElementById('amt-ov');const hint=document.getElementById('amt-hint');if(!v||v<=0){ov.textContent='';hint.textContent='';return;}ov.textContent=Math.round(v).toLocaleString('ko-KR');hint.textContent='입력금액: '+Math.round(v).toLocaleString('ko-KR')+'원'}
-function updateDays(){const v=parseInt(document.getElementById('days-raw').value);document.getElementById('days-ov').textContent=v>0?v.toLocaleString('ko-KR'):''}
-function calcDate(){const d=document.getElementById('mdate').value;if(!d)return;const today=new Date();today.setHours(0,0,0,0);const mat=new Date(d);mat.setHours(0,0,0,0);const diff=Math.ceil((mat-today)/86400000)+1;const el=document.getElementById('days-info');if(diff<=0){el.textContent='⚠️ 만기일이 오늘보다 이전입니다';el.className='fh err';document.getElementById('res').classList.remove('show');return;}el.textContent='오늘부터 계산하여 '+diff.toLocaleString('ko-KR')+'일 남음';el.className='fh';calc()}
+let mode='days'; // 사장님 오더에 따른 '남은 일수' 기본 활성화 팩트 유지
+
+function setMode(m){
+  mode=m;
+  document.getElementById('btn-days').classList.toggle('on',m==='days');
+  document.getElementById('btn-date').classList.toggle('on',m==='date');
+  document.getElementById('df-days').classList.toggle('hide',m==='date');
+  document.getElementById('df-date').classList.toggle('show',m==='date');
+  document.getElementById('res').classList.remove('show');
+  
+  // 탭이 전환되는 즉시 연산을 튕겨서 충돌을 방지하고 상태 재배치
+  if (m === 'date') {
+    calcDate();
+  } else {
+    calc();
+  }
+}
+
+function fmt(n){return Math.round(n).toLocaleString('ko-KR')}
+
+function updateAmt(){
+  const v=parseFloat(document.getElementById('amt-raw').value);
+  const ov=document.getElementById('amt-ov');
+  const hint=document.getElementById('amt-hint');
+  if(!v||v<=0){ov.textContent='';hint.textContent='';return;}
+  ov.textContent=fmt(v);
+  hint.textContent='입력금액: '+fmt(v)+'원';
+}
+
+function updateDays(){
+  const v=parseInt(document.getElementById('days-raw').value);
+  document.getElementById('days-ov').textContent=v>0?fmt(v):'';
+}
+
+// 🎯 사장님 맞춤형 핵심 타격 함수: 만기일 탭 활성화 시에만 정밀 가동
+function calcDate(){
+  const d=document.getElementById('mdate').value;
+  if(!d) return;
+
+  // 1. 조건부 활성화 검문: 만기일 탭이 아닐 때는 연산 자원 차단
+  if(mode !== 'date') return;
+
+  // 2. 만기일 탭 활성화 순간 백그라운드 공휴일 동기화 엔진 가동
+  const matYear = new Date(d).getFullYear();
+  fetchHolidays(matYear);
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  // 3. 금융 휴일 보정 엔진 가동
+  const dateMeta = getFinalWorkingDate(d);
+  const finalMat = dateMeta.finalDateObj;
+  
+  const diff = Math.ceil((finalMat - today) / 86400000) + 1;
+  const el = document.getElementById('days-info');
+
+  if(diff <= 0){
+    el.textContent = '⚠️ 만기일이 오늘보다 이전입니다';
+    el.className = 'fh err';
+    document.getElementById('res').classList.remove('show');
+    return;
+  }
+
+  // 4. 사장님 비즈니스 정석 맞춤 문구 분기 100% 매칭 출력
+  if (!dateMeta.isAdjusted) {
+    el.textContent = `선택하신 만기일(${dateMeta.originalDateStr})은 오늘부터 총 ${diff}일입니다.`;
+  } else {
+    el.textContent = `선택하신 만기일(${dateMeta.originalDateStr})은 휴일이어서 다음 은행 영업일인 ${dateMeta.finalDateStr}(${dateMeta.finalDayOfWeek}요일)로 ${dateMeta.addedDays}일이 가산되어 오늘부터 총 ${diff}일입니다.`;
+  }
+  
+  el.className = 'fh';
+  calc();
+}
+
 function getAmt(){return parseFloat(document.getElementById('amt-raw').value)||0}
 function getRate(){return parseFloat(document.getElementById('rate').value)||0}
-function getDays(){if(mode==='days')return parseInt(document.getElementById('days-raw').value)||0;const d=document.getElementById('mdate').value;if(!d)return 0;const today=new Date();today.setHours(0,0,0,0);const mat=new Date(d);mat.setHours(0,0,0,0);return Math.max(0,Math.ceil((mat-today)/86400000)+1)}
 
-// ✅ 수정: 수수료만 반올림, 실수령액 = 원금 - 반올림된 수수료 (항상 원금 일치 보장)
+// 최종 수수료 연산에 들어갈 진짜 일수를 정산해 주는 일수 추출 엔진
+function getDays(){
+  if(mode==='days') return parseInt(document.getElementById('days-raw').value)||0;
+  
+  const d=document.getElementById('mdate').value;
+  if(!d) return 0;
+  
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  
+  // 만기일 모드일 때 보정 엔진 통과 데이터를 수수료 수식에 대입
+  const dateMeta = getFinalWorkingDate(d);
+  return Math.max(0, Math.ceil((dateMeta.finalDateObj - today) / 86400000) + 1);
+}
+
 function calc(){
-  const amt=getAmt(),rate=getRate(),days=getDays();
-  if(amt<=0||rate<=0||days<=0){document.getElementById('res').classList.remove('show');return;}
-  const feeRaw=amt*(rate/100)*days/30;
-  const fee=Math.round(feeRaw);   // 수수료만 반올림
-  const net=amt-fee;              // 실수령액 = 원금 - 반올림된 수수료 (반올림 없음)
-  // 검증: fee + net === amt 항상 성립
+  const amt=getAmt(), rate=getRate(), days=getDays();
+  if(amt<=0||rate<=0||days<=0){
+    document.getElementById('res').classList.remove('show');
+    return;
+  }
+  
+  const fee=amt*(rate/100)*days/30, net=amt-fee;
+  
   document.getElementById('r-net').textContent=fmt(net)+'원';
   document.getElementById('r-fee').textContent=fmt(fee)+'원';
   document.getElementById('c-amt').textContent=fmt(amt)+'원';
