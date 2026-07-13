@@ -168,7 +168,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
   <a class="logo" href="/"><div class="logo-mark"><img src="/assets/logo.jpg" alt="태성투자대부 로고" style="width:42px;height:42px;object-fit:contain;display:block;"></div><span class="logo-text"><span class="logo-name">태성투자대부</span><span class="logo-reg">대부업 2019-서울중구-0048</span></span></a>
   <ul class="nav-links">
     <li><a href="/">📑 전자어음할인</a></li>
-    <li><a href="/calculator/" class="on">📉 수수료 계산기</a></li>
+    <li><a href="/culator/" class="on">📉 수수료 계산기</a></li>
     <li><a href="/possible/">📋 할인 가능 목록</a></li>
     <li><a href="/corporate/">🏢 기업금융</a></li>
     <li><a href="/news/">📰 전자어음 뉴스</a></li>
@@ -180,7 +180,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
 </nav>
 <div class="mob" id="mob">
   <a href="/">📑 전자어음할인</a>
-  <a href="/calculator/">📉 수수료 계산기</a>
+  <a href="/culator/">📉 수수료 계산기</a>
   <a href="/possible/">📋 할인 가능 목록</a>
   <a href="/corporate/">🏢 기업금융</a>
   <a class="m-tel" href="tel:02-999-2325">📞 02-999-2325</a>
@@ -189,7 +189,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
 <div class="pw">
   <div class="ch">
     <div class="chi">
-      <div class="cey">Free Calculator</div>
+      <div class="cey">Free culator</div>
       <h1>전자어음할인<br><em>수수료 계산기</em></h1>
       <p>어음금액·할인율·만기일만 입력하면 수수료와 실수령액을 즉시 계산합니다.</p>
     </div>
@@ -484,19 +484,25 @@ function getDays(){
 }
 
 function calc(){
-  const amt=getAmt(), rate=getRate(), days=getDays();
-  if(amt<=0||rate<=0||days<=0){
+const amt = getAmt(), rate = getRate(), days = getDays();
+  if(amt <= 0 || rate <= 0 || days <= 0){
     document.getElementById('res').classList.remove('show');
     return;
   }
   
-  const fee=amt*(rate/100)*days/30, net=amt-fee;
+  // 1. 수수료 계산: 먼저 계산한 뒤 Math.round()를 적용하여 반올림 처리
+  const rawFee = amt * (rate / 100) * days / 30;
+  const fee = Math.round(rawFee);
   
-  document.getElementById('r-net').textContent=fmt(net)+'원';
-  document.getElementById('r-fee').textContent=fmt(fee)+'원';
-  document.getElementById('c-amt').textContent=fmt(amt)+'원';
-  document.getElementById('c-rate').textContent=rate+'%';
-  document.getElementById('c-days').textContent=fmt(days)+'일';
+  // 2. 실수령액 계산: 원금에서 반올림된 수수료를 차감하여 오차 방지
+  const net = amt - fee;
+  
+  // 3. 결과 반영
+  document.getElementById('r-net').textContent = net.toLocaleString('ko-KR') + '원';
+  document.getElementById('r-fee').textContent = fee.toLocaleString('ko-KR') + '원';
+  document.getElementById('c-amt').textContent = amt.toLocaleString('ko-KR') + '원';
+  document.getElementById('c-rate').textContent = rate + '%';
+  document.getElementById('c-days').textContent = days.toLocaleString('ko-KR') + '일';
   document.getElementById('res').classList.add('show');
 }
 
