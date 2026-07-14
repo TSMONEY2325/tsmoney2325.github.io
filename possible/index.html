@@ -116,6 +116,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .btn-a:hover{background:var(--al)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .rv.vis{opacity:1;transform:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:860px){.nav-links{display:none}.hbg{display:flex}.nav-tel{display:none}}
 @media(max-width:600px){
   .search-bar{flex-direction:column}
@@ -160,7 +161,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
     <div class="phi">
       <div class="pey">Discount Eligible List</div>
       <h1>전자어음 할인 가능<br><em>기업 목록</em></h1>
-      <p>보유하신 어음의 발행사를 검색해 보세요.<br>목록에 없는 기업도 전화 상담으로 즉시 확인 가능합니다.</p>
+      <p>보유하신 전자어음의 발행사를 검색해 보세요.<br>목록에 없는 기업도 전화 상담으로 즉시 확인 가능합니다.</p>
     </div>
   </div>
 
@@ -189,121 +190,121 @@ footer{background:#06100E;padding:36px 5vw 28px}
         <div class="ig-card open" data-cat="건설">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">🏗</span><span class="ig-title">건설</span><span class="ig-count" id="cnt-건설"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-건설">
-            <div class="co-item" data-n="현대건설"><div class="co-dot"></div><span class="co-name">현대건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="삼성물산건설"><div class="co-dot"></div><span class="co-name">삼성물산 건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="GS건설"><div class="co-dot"></div><span class="co-name">GS건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="대우건설"><div class="co-dot"></div><span class="co-name">대우건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="포스코건설"><div class="co-dot"></div><span class="co-name">포스코건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="롯데건설"><div class="co-dot"></div><span class="co-name">롯데건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="HDC현대산업개발"><div class="co-dot"></div><span class="co-name">HDC현대산업개발</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="SK에코플랜트"><div class="co-dot"></div><span class="co-name">SK에코플랜트</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="DL이앤씨"><div class="co-dot"></div><span class="co-name">DL이앤씨</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="한화건설"><div class="co-dot"></div><span class="co-name">한화건설</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="호반건설"><div class="co-dot"></div><span class="co-name">호반건설</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="중흥건설"><div class="co-dot"></div><span class="co-name">중흥건설</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="태영건설"><div class="co-dot"></div><span class="co-name">태영건설</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="동부건설"><div class="co-dot"></div><span class="co-name">동부건설</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="계룡건설"><div class="co-dot"></div><span class="co-name">계룡건설</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="KCC건설"><div class="co-dot"></div><span class="co-name">KCC건설</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="현대건설"><div class="co-dot"></div><span class="sr-only">현대건설 전자어음할인 현대건설 어음할인 현대건설 전자어음 현대건설 어음</span><span class="co-name">현대건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="삼성물산건설"><div class="co-dot"></div><span class="sr-only">삼성물산건설 전자어음할인 삼성물산건설 어음할인 삼성물산건설 전자어음 삼성물산건설 어음</span><span class="co-name">삼성물산 건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="GS건설"><div class="co-dot"></div><span class="sr-only">GS건설 전자어음할인 GS건설 어음할인 GS건설 전자어음 GS건설 어음</span><span class="co-name">GS건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="대우건설"><div class="co-dot"></div><span class="sr-only">대우건설 전자어음할인 대우건설 어음할인 대우건설 전자어음 대우건설 어음</span><span class="co-name">대우건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="포스코건설"><div class="co-dot"></div><span class="sr-only">포스코건설 전자어음할인 포스코건설 어음할인 포스코건설 전자어음 포스코건설 어음</span><span class="co-name">포스코건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="롯데건설"><div class="co-dot"></div><span class="sr-only">롯데건설 전자어음할인 롯데건설 어음할인 롯데건설 전자어음 롯데건설 어음</span><span class="co-name">롯데건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="HDC현대산업개발"><div class="co-dot"></div><span class="sr-only">HDC현대산업개발 전자어음할인 HDC현대산업개발 어음할인 HDC현대산업개발 전자어음 HDC현대산업개발 어음</span><span class="co-name">HDC현대산업개발</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="SK에코플랜트"><div class="co-dot"></div><span class="sr-only">SK에코플랜트 전자어음할인 SK에코플랜트 어음할인 SK에코플랜트 전자어음 SK에코플랜트 어음</span><span class="co-name">SK에코플랜트</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="DL이앤씨"><div class="co-dot"></div><span class="sr-only">DL이앤씨 전자어음할인 DL이앤씨 어음할인 DL이앤씨 전자어음 DL이앤씨 어음</span><span class="co-name">DL이앤씨</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="한화건설"><div class="co-dot"></div><span class="sr-only">한화건설 전자어음할인 한화건설 어음할인 한화건설 전자어음 한화건설 어음</span><span class="co-name">한화건설</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="호반건설"><div class="co-dot"></div><span class="sr-only">호반건설 전자어음할인 호반건설 어음할인 호반건설 전자어음 호반건설 어음</span><span class="co-name">호반건설</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="중흥건설"><div class="co-dot"></div><span class="sr-only">중흥건설 전자어음할인 중흥건설 어음할인 중흥건설 전자어음 중흥건설 어음</span><span class="co-name">중흥건설</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="태영건설"><div class="co-dot"></div><span class="sr-only">태영건설 전자어음할인 태영건설 어음할인 태영건설 전자어음 태영건설 어음</span><span class="co-name">태영건설</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="동부건설"><div class="co-dot"></div><span class="sr-only">동부건설 전자어음할인 동부건설 어음할인 동부건설 전자어음 동부건설 어음</span><span class="co-name">동부건설</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="계룡건설"><div class="co-dot"></div><span class="sr-only">계룡건설 전자어음할인 계룡건설 어음할인 계룡건설 전자어음 계룡건설 어음</span><span class="co-name">계룡건설</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="KCC건설"><div class="co-dot"></div><span class="sr-only">KCC건설 전자어음할인 KCC건설 어음할인 KCC건설 전자어음 KCC건설 어음</span><span class="co-name">KCC건설</span><span class="co-badge cb-mid">중견</span></div>
           </div></div>
         </div>
         <div class="ig-card open" data-cat="제조">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">🏭</span><span class="ig-title">제조·산업</span><span class="ig-count" id="cnt-제조"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-제조">
-            <div class="co-item" data-n="삼성전자"><div class="co-dot"></div><span class="co-name">삼성전자</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="현대자동차"><div class="co-dot"></div><span class="co-name">현대자동차</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="기아"><div class="co-dot"></div><span class="co-name">기아</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="LG전자"><div class="co-dot"></div><span class="co-name">LG전자</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="포스코"><div class="co-dot"></div><span class="co-name">포스코</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="현대제철"><div class="co-dot"></div><span class="co-name">현대제철</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="한국타이어"><div class="co-dot"></div><span class="co-name">한국타이어</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="효성"><div class="co-dot"></div><span class="co-name">효성</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="LS산전"><div class="co-dot"></div><span class="co-name">LS산전</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="두산에너빌리티"><div class="co-dot"></div><span class="co-name">두산에너빌리티</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="한화에어로스페이스"><div class="co-dot"></div><span class="co-name">한화에어로스페이스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="현대모비스"><div class="co-dot"></div><span class="co-name">현대모비스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="SK하이닉스"><div class="co-dot"></div><span class="co-name">SK하이닉스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="만도"><div class="co-dot"></div><span class="co-name">만도</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="성우하이텍"><div class="co-dot"></div><span class="co-name">성우하이텍</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="동국제강"><div class="co-dot"></div><span class="co-name">동국제강</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="세아제강"><div class="co-dot"></div><span class="co-name">세아제강</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="삼성전자"><div class="co-dot"></div><span class="sr-only">삼성전자 전자어음할인 삼성전자 어음할인 삼성전자 전자어음 삼성전자 어음</span><span class="co-name">삼성전자</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="현대자동차"><div class="co-dot"></div><span class="sr-only">현대자동차 전자어음할인 현대자동차 어음할인 현대자동차 전자어음 현대자동차 어음</span><span class="co-name">현대자동차</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="기아"><div class="co-dot"></div><span class="sr-only">기아 전자어음할인 기아 어음할인 기아 전자어음 기아 어음</span><span class="co-name">기아</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="LG전자"><div class="co-dot"></div><span class="sr-only">LG전자 전자어음할인 LG전자 어음할인 LG전자 전자어음 LG전자 어음</span><span class="co-name">LG전자</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="포스코"><div class="co-dot"></div><span class="sr-only">포스코 전자어음할인 포스코 어음할인 포스코 전자어음 포스코 어음</span><span class="co-name">포스코</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="현대제철"><div class="co-dot"></div><span class="sr-only">현대제철 전자어음할인 현대제철 어음할인 현대제철 전자어음 현대제철 어음</span><span class="co-name">현대제철</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="한국타이어"><div class="co-dot"></div><span class="sr-only">한국타이어 전자어음할인 한국타이어 어음할인 한국타이어 전자어음 한국타이어 어음</span><span class="co-name">한국타이어</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="효성"><div class="co-dot"></div><span class="sr-only">효성 전자어음할인 효성 어음할인 효성 전자어음 효성 어음</span><span class="co-name">효성</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="LS산전"><div class="co-dot"></div><span class="sr-only">LS산전 전자어음할인 LS산전 어음할인 LS산전 전자어음 LS산전 어음</span><span class="co-name">LS산전</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="두산에너빌리티"><div class="co-dot"></div><span class="sr-only">두산에너빌리티 전자어음할인 두산에너빌리티 어음할인 두산에너빌리티 전자어음 두산에너빌리티 어음</span><span class="co-name">두산에너빌리티</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="한화에어로스페이스"><div class="co-dot"></div><span class="sr-only">한화에어로스페이스 전자어음할인 한화에어로스페이스 어음할인 한화에어로스페이스 전자어음 한화에어로스페이스 어음</span><span class="co-name">한화에어로스페이스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="현대모비스"><div class="co-dot"></div><span class="sr-only">현대모비스 전자어음할인 현대모비스 어음할인 현대모비스 전자어음 현대모비스 어음</span><span class="co-name">현대모비스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="SK하이닉스"><div class="co-dot"></div><span class="sr-only">SK하이닉스 전자어음할인 SK하이닉스 어음할인 SK하이닉스 전자어음 SK하이닉스 어음</span><span class="co-name">SK하이닉스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="만도"><div class="co-dot"></div><span class="sr-only">만도 전자어음할인 만도 어음할인 만도 전자어음 만도 어음</span><span class="co-name">만도</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="성우하이텍"><div class="co-dot"></div><span class="sr-only">성우하이텍 전자어음할인 성우하이텍 어음할인 성우하이텍 전자어음 성우하이텍 어음</span><span class="co-name">성우하이텍</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="동국제강"><div class="co-dot"></div><span class="sr-only">동국제강 전자어음할인 동국제강 어음할인 동국제강 전자어음 동국제강 어음</span><span class="co-name">동국제강</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="세아제강"><div class="co-dot"></div><span class="sr-only">세아제강 전자어음할인 세아제강 어음할인 세아제강 전자어음 세아제강 어음</span><span class="co-name">세아제강</span><span class="co-badge cb-mid">중견</span></div>
           </div></div>
         </div>
         <div class="ig-card open" data-cat="유통">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">🛒</span><span class="ig-title">유통·물류</span><span class="ig-count" id="cnt-유통"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-유통">
-            <div class="co-item" data-n="롯데쇼핑"><div class="co-dot"></div><span class="co-name">롯데쇼핑</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="이마트"><div class="co-dot"></div><span class="co-name">이마트</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="GS리테일"><div class="co-dot"></div><span class="co-name">GS리테일</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="BGF리테일"><div class="co-dot"></div><span class="co-name">BGF리테일</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="CJ대한통운"><div class="co-dot"></div><span class="co-name">CJ대한통운</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="한진택배"><div class="co-dot"></div><span class="co-name">한진택배</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="롯데글로벌로지스"><div class="co-dot"></div><span class="co-name">롯데글로벌로지스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="현대글로비스"><div class="co-dot"></div><span class="co-name">현대글로비스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="쿠팡"><div class="co-dot"></div><span class="co-name">쿠팡</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="홈플러스"><div class="co-dot"></div><span class="co-name">홈플러스</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="GS홈쇼핑"><div class="co-dot"></div><span class="co-name">GS홈쇼핑</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="현대홈쇼핑"><div class="co-dot"></div><span class="co-name">현대홈쇼핑</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="롯데쇼핑"><div class="co-dot"></div><span class="sr-only">롯데쇼핑 전자어음할인 롯데쇼핑 어음할인 롯데쇼핑 전자어음 롯데쇼핑 어음</span><span class="co-name">롯데쇼핑</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="이마트"><div class="co-dot"></div><span class="sr-only">이마트 전자어음할인 이마트 어음할인 이마트 전자어음 이마트 어음</span><span class="co-name">이마트</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="GS리테일"><div class="co-dot"></div><span class="sr-only">GS리테일 전자어음할인 GS리테일 어음할인 GS리테일 전자어음 GS리테일 어음</span><span class="co-name">GS리테일</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="BGF리테일"><div class="co-dot"></div><span class="sr-only">BGF리테일 전자어음할인 BGF리테일 어음할인 BGF리테일 전자어음 BGF리테일 어음</span><span class="co-name">BGF리테일</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="CJ대한통운"><div class="co-dot"></div><span class="sr-only">CJ대한통운 전자어음할인 CJ대한통운 어음할인 CJ대한통운 전자어음 CJ대한통운 어음</span><span class="co-name">CJ대한통운</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="한진택배"><div class="co-dot"></div><span class="sr-only">한진택배 전자어음할인 한진택배 어음할인 한진택배 전자어음 한진택배 어음</span><span class="co-name">한진택배</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="롯데글로벌로지스"><div class="co-dot"></div><span class="sr-only">롯데글로벌로지스 전자어음할인 롯데글로벌로지스 어음할인 롯데글로벌로지스 전자어음 롯데글로벌로지스 어음</span><span class="co-name">롯데글로벌로지스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="현대글로비스"><div class="co-dot"></div><span class="sr-only">현대글로비스 전자어음할인 현대글로비스 어음할인 현대글로비스 전자어음 현대글로비스 어음</span><span class="co-name">현대글로비스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="쿠팡"><div class="co-dot"></div><span class="sr-only">쿠팡 전자어음할인 쿠팡 어음할인 쿠팡 전자어음 쿠팡 어음</span><span class="co-name">쿠팡</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="홈플러스"><div class="co-dot"></div><span class="sr-only">홈플러스 전자어음할인 홈플러스 어음할인 홈플러스 전자어음 홈플러스 어음</span><span class="co-name">홈플러스</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="GS홈쇼핑"><div class="co-dot"></div><span class="sr-only">GS홈쇼핑 전자어음할인 GS홈쇼핑 어음할인 GS홈쇼핑 전자어음 GS홈쇼핑 어음</span><span class="co-name">GS홈쇼핑</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="현대홈쇼핑"><div class="co-dot"></div><span class="sr-only">현대홈쇼핑 전자어음할인 현대홈쇼핑 어음할인 현대홈쇼핑 전자어음 현대홈쇼핑 어음</span><span class="co-name">현대홈쇼핑</span><span class="co-badge cb-mid">중견</span></div>
           </div></div>
         </div>
         <div class="ig-card open" data-cat="IT">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">💻</span><span class="ig-title">IT·전자</span><span class="ig-count" id="cnt-IT"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-IT">
-            <div class="co-item" data-n="SK텔레콤"><div class="co-dot"></div><span class="co-name">SK텔레콤</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="KT"><div class="co-dot"></div><span class="co-name">KT</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="LG유플러스"><div class="co-dot"></div><span class="co-name">LG유플러스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="네이버"><div class="co-dot"></div><span class="co-name">네이버</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="카카오"><div class="co-dot"></div><span class="co-name">카카오</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="삼성SDS"><div class="co-dot"></div><span class="co-name">삼성SDS</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="LG CNS"><div class="co-dot"></div><span class="co-name">LG CNS</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="SK씨앤씨"><div class="co-dot"></div><span class="co-name">SK C&C</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="삼성디스플레이"><div class="co-dot"></div><span class="co-name">삼성디스플레이</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="LG디스플레이"><div class="co-dot"></div><span class="co-name">LG디스플레이</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="삼성전기"><div class="co-dot"></div><span class="co-name">삼성전기</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="SK텔레콤"><div class="co-dot"></div><span class="sr-only">SK텔레콤 전자어음할인 SK텔레콤 어음할인 SK텔레콤 전자어음 SK텔레콤 어음</span><span class="co-name">SK텔레콤</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="KT"><div class="co-dot"></div><span class="sr-only">KT 전자어음할인 KT 어음할인 KT 전자어음 KT 어음</span><span class="co-name">KT</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="LG유플러스"><div class="co-dot"></div><span class="sr-only">LG유플러스 전자어음할인 LG유플러스 어음할인 LG유플러스 전자어음 LG유플러스 어음</span><span class="co-name">LG유플러스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="네이버"><div class="co-dot"></div><span class="sr-only">네이버 전자어음할인 네이버 어음할인 네이버 전자어음 네이버 어음</span><span class="co-name">네이버</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="카카오"><div class="co-dot"></div><span class="sr-only">카카오 전자어음할인 카카오 어음할인 카카오 전자어음 카카오 어음</span><span class="co-name">카카오</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="삼성SDS"><div class="co-dot"></div><span class="sr-only">삼성SDS 전자어음할인 삼성SDS 어음할인 삼성SDS 전자어음 삼성SDS 어음</span><span class="co-name">삼성SDS</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="LG CNS"><div class="co-dot"></div><span class="sr-only">LG CNS 전자어음할인 LG CNS 어음할인 LG CNS 전자어음 LG CNS 어음</span><span class="co-name">LG CNS</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="SK씨앤씨"><div class="co-dot"></div><span class="sr-only">SK씨앤씨 전자어음할인 SK씨앤씨 어음할인 SK씨앤씨 전자어음 SK씨앤씨 어음</span><span class="co-name">SK C&C</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="삼성디스플레이"><div class="co-dot"></div><span class="sr-only">삼성디스플레이 전자어음할인 삼성디스플레이 어음할인 삼성디스플레이 전자어음 삼성디스플레이 어음</span><span class="co-name">삼성디스플레이</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="LG디스플레이"><div class="co-dot"></div><span class="sr-only">LG디스플레이 전자어음할인 LG디스플레이 어음할인 LG디스플레이 전자어음 LG디스플레이 어음</span><span class="co-name">LG디스플레이</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="삼성전기"><div class="co-dot"></div><span class="sr-only">삼성전기 전자어음할인 삼성전기 어음할인 삼성전기 전자어음 삼성전기 어음</span><span class="co-name">삼성전기</span><span class="co-badge cb-top">대기업</span></div>
           </div></div>
         </div>
         <div class="ig-card open" data-cat="식품">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">🍱</span><span class="ig-title">식품·외식</span><span class="ig-count" id="cnt-식품"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-식품">
-            <div class="co-item" data-n="CJ제일제당"><div class="co-dot"></div><span class="co-name">CJ제일제당</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="롯데제과"><div class="co-dot"></div><span class="co-name">롯데제과</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="오리온"><div class="co-dot"></div><span class="co-name">오리온</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="농심"><div class="co-dot"></div><span class="co-name">농심</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="풀무원"><div class="co-dot"></div><span class="co-name">풀무원</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="하이트진로"><div class="co-dot"></div><span class="co-name">하이트진로</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="오비맥주"><div class="co-dot"></div><span class="co-name">오비맥주</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="삼양식품"><div class="co-dot"></div><span class="co-name">삼양식품</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="빙그레"><div class="co-dot"></div><span class="co-name">빙그레</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="동원FB"><div class="co-dot"></div><span class="co-name">동원F&B</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="대상"><div class="co-dot"></div><span class="co-name">대상</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="SPC삼립"><div class="co-dot"></div><span class="co-name">SPC삼립</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="CJ제일제당"><div class="co-dot"></div><span class="sr-only">CJ제일제당 전자어음할인 CJ제일제당 어음할인 CJ제일제당 전자어음 CJ제일제당 어음</span><span class="co-name">CJ제일제당</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="롯데제과"><div class="co-dot"></div><span class="sr-only">롯데제과 전자어음할인 롯데제과 어음할인 롯데제과 전자어음 롯데제과 어음</span><span class="co-name">롯데제과</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="오리온"><div class="co-dot"></div><span class="sr-only">오리온 전자어음할인 오리온 어음할인 오리온 전자어음 오리온 어음</span><span class="co-name">오리온</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="농심"><div class="co-dot"></div><span class="sr-only">농심 전자어음할인 농심 어음할인 농심 전자어음 농심 어음</span><span class="co-name">농심</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="풀무원"><div class="co-dot"></div><span class="sr-only">풀무원 전자어음할인 풀무원 어음할인 풀무원 전자어음 풀무원 어음</span><span class="co-name">풀무원</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="하이트진로"><div class="co-dot"></div><span class="sr-only">하이트진로 전자어음할인 하이트진로 어음할인 하이트진로 전자어음 하이트진로 어음</span><span class="co-name">하이트진로</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="오비맥주"><div class="co-dot"></div><span class="sr-only">오비맥주 전자어음할인 오비맥주 어음할인 오비맥주 전자어음 오비맥주 어음</span><span class="co-name">오비맥주</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="삼양식품"><div class="co-dot"></div><span class="sr-only">삼양식품 전자어음할인 삼양식품 어음할인 삼양식품 전자어음 삼양식품 어음</span><span class="co-name">삼양식품</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="빙그레"><div class="co-dot"></div><span class="sr-only">빙그레 전자어음할인 빙그레 어음할인 빙그레 전자어음 빙그레 어음</span><span class="co-name">빙그레</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="동원FB"><div class="co-dot"></div><span class="sr-only">동원FB 전자어음할인 동원FB 어음할인 동원FB 전자어음 동원FB 어음</span><span class="co-name">동원F&B</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="대상"><div class="co-dot"></div><span class="sr-only">대상 전자어음할인 대상 어음할인 대상 전자어음 대상 어음</span><span class="co-name">대상</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="SPC삼립"><div class="co-dot"></div><span class="sr-only">SPC삼립 전자어음할인 SPC삼립 어음할인 SPC삼립 전자어음 SPC삼립 어음</span><span class="co-name">SPC삼립</span><span class="co-badge cb-mid">중견</span></div>
           </div></div>
         </div>
         <div class="ig-card open" data-cat="에너지">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">⚡</span><span class="ig-title">에너지·화학</span><span class="ig-count" id="cnt-에너지"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-에너지">
-            <div class="co-item" data-n="한국전력"><div class="co-dot"></div><span class="co-name">한국전력</span><span class="co-badge cb-top">공기업</span></div>
-            <div class="co-item" data-n="SK이노베이션"><div class="co-dot"></div><span class="co-name">SK이노베이션</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="GS칼텍스"><div class="co-dot"></div><span class="co-name">GS칼텍스</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="에쓰오일"><div class="co-dot"></div><span class="co-name">에쓰오일</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="한화솔루션"><div class="co-dot"></div><span class="co-name">한화솔루션</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="롯데케미칼"><div class="co-dot"></div><span class="co-name">롯데케미칼</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="LG화학"><div class="co-dot"></div><span class="co-name">LG화학</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="금호석유화학"><div class="co-dot"></div><span class="co-name">금호석유화학</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="OCI"><div class="co-dot"></div><span class="co-name">OCI</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="한국전력"><div class="co-dot"></div><span class="sr-only">한국전력 전자어음할인 한국전력 어음할인 한국전력 전자어음 한국전력 어음</span><span class="co-name">한국전력</span><span class="co-badge cb-top">공기업</span></div>
+            <div class="co-item" data-n="SK이노베이션"><div class="co-dot"></div><span class="sr-only">SK이노베이션 전자어음할인 SK이노베이션 어음할인 SK이노베이션 전자어음 SK이노베이션 어음</span><span class="co-name">SK이노베이션</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="GS칼텍스"><div class="co-dot"></div><span class="sr-only">GS칼텍스 전자어음할인 GS칼텍스 어음할인 GS칼텍스 전자어음 GS칼텍스 어음</span><span class="co-name">GS칼텍스</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="에쓰오일"><div class="co-dot"></div><span class="sr-only">에쓰오일 전자어음할인 에쓰오일 어음할인 에쓰오일 전자어음 에쓰오일 어음</span><span class="co-name">에쓰오일</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="한화솔루션"><div class="co-dot"></div><span class="sr-only">한화솔루션 전자어음할인 한화솔루션 어음할인 한화솔루션 전자어음 한화솔루션 어음</span><span class="co-name">한화솔루션</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="롯데케미칼"><div class="co-dot"></div><span class="sr-only">롯데케미칼 전자어음할인 롯데케미칼 어음할인 롯데케미칼 전자어음 롯데케미칼 어음</span><span class="co-name">롯데케미칼</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="LG화학"><div class="co-dot"></div><span class="sr-only">LG화학 전자어음할인 LG화학 어음할인 LG화학 전자어음 LG화학 어음</span><span class="co-name">LG화학</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="금호석유화학"><div class="co-dot"></div><span class="sr-only">금호석유화학 전자어음할인 금호석유화학 어음할인 금호석유화학 전자어음 금호석유화학 어음</span><span class="co-name">금호석유화학</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="OCI"><div class="co-dot"></div><span class="sr-only">OCI 전자어음할인 OCI 어음할인 OCI 전자어음 OCI 어음</span><span class="co-name">OCI</span><span class="co-badge cb-mid">중견</span></div>
           </div></div>
         </div>
         <div class="ig-card open" data-cat="기타">
           <div class="ig-head" onclick="toggleCard(this.parentElement)"><span class="ig-icon">📦</span><span class="ig-title">기타 (의료·서비스)</span><span class="ig-count" id="cnt-기타"></span><span class="ig-arrow">▼</span></div>
           <div class="ig-body"><div class="co-grid" id="g-기타">
-            <div class="co-item" data-n="삼성서울병원"><div class="co-dot"></div><span class="co-name">삼성서울병원</span><span class="co-badge cb-top">대형</span></div>
-            <div class="co-item" data-n="서울아산병원"><div class="co-dot"></div><span class="co-name">서울아산병원</span><span class="co-badge cb-top">대형</span></div>
-            <div class="co-item" data-n="세브란스병원"><div class="co-dot"></div><span class="co-name">세브란스병원</span><span class="co-badge cb-top">대형</span></div>
-            <div class="co-item" data-n="현대백화점"><div class="co-dot"></div><span class="co-name">현대백화점</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="신세계"><div class="co-dot"></div><span class="co-name">신세계</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="롯데호텔"><div class="co-dot"></div><span class="co-name">롯데호텔</span><span class="co-badge cb-top">대기업</span></div>
-            <div class="co-item" data-n="이랜드"><div class="co-dot"></div><span class="co-name">이랜드</span><span class="co-badge cb-mid">중견</span></div>
-            <div class="co-item" data-n="교원그룹"><div class="co-dot"></div><span class="co-name">교원그룹</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="삼성서울병원"><div class="co-dot"></div><span class="sr-only">삼성서울병원 전자어음할인 삼성서울병원 어음할인 삼성서울병원 전자어음 삼성서울병원 어음</span><span class="co-name">삼성서울병원</span><span class="co-badge cb-top">대형</span></div>
+            <div class="co-item" data-n="서울아산병원"><div class="co-dot"></div><span class="sr-only">서울아산병원 전자어음할인 서울아산병원 어음할인 서울아산병원 전자어음 서울아산병원 어음</span><span class="co-name">서울아산병원</span><span class="co-badge cb-top">대형</span></div>
+            <div class="co-item" data-n="세브란스병원"><div class="co-dot"></div><span class="sr-only">세브란스병원 전자어음할인 세브란스병원 어음할인 세브란스병원 전자어음 세브란스병원 어음</span><span class="co-name">세브란스병원</span><span class="co-badge cb-top">대형</span></div>
+            <div class="co-item" data-n="현대백화점"><div class="co-dot"></div><span class="sr-only">현대백화점 전자어음할인 현대백화점 어음할인 현대백화점 전자어음 현대백화점 어음</span><span class="co-name">현대백화점</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="신세계"><div class="co-dot"></div><span class="sr-only">신세계 전자어음할인 신세계 어음할인 신세계 전자어음 신세계 어음</span><span class="co-name">신세계</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="롯데호텔"><div class="co-dot"></div><span class="sr-only">롯데호텔 전자어음할인 롯데호텔 어음할인 롯데호텔 전자어음 롯데호텔 어음</span><span class="co-name">롯데호텔</span><span class="co-badge cb-top">대기업</span></div>
+            <div class="co-item" data-n="이랜드"><div class="co-dot"></div><span class="sr-only">이랜드 전자어음할인 이랜드 어음할인 이랜드 전자어음 이랜드 어음</span><span class="co-name">이랜드</span><span class="co-badge cb-mid">중견</span></div>
+            <div class="co-item" data-n="교원그룹"><div class="co-dot"></div><span class="sr-only">교원그룹 전자어음할인 교원그룹 어음할인 교원그룹 전자어음 교원그룹 어음</span><span class="co-name">교원그룹</span><span class="co-badge cb-mid">중견</span></div>
           </div></div>
         </div>
       </div>
@@ -397,7 +398,7 @@ keys.forEach((cho,i)=>{
   grp.id='cho-'+cho;
   grp.innerHTML=`<div class="cho-label">${cho} (${ETC[cho].length}개)</div>
     <div class="etc-grid" id="eg-${cho}">
-      ${ETC[cho].map(n=>`<div class="etc-item" data-n="${n}"><div class="etc-dot"></div><span class="etc-name">${n}</span></div>`).join('')}
+      ${ETC[cho].map(n=>`<div class="etc-item" data-n="${n}"><div class="etc-dot"></div><span class="etc-name">${n}</span><span class="sr-only">${n} 전자어음할인 ${n} 어음할인 ${n} 전자어음 ${n} 어음</span></div>`).join('')}
     </div>`;
   grpWrap.appendChild(grp);
 });
