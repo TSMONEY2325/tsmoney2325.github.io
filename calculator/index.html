@@ -502,7 +502,15 @@ const amt = getAmt(), rate = getRate(), days = getDays();
   document.getElementById('r-fee').textContent = fee.toLocaleString('ko-KR') + '원';
   document.getElementById('c-amt').textContent = amt.toLocaleString('ko-KR') + '원';
   document.getElementById('c-rate').textContent = rate + '%';
+  if(mode === 'date'){
+  const d = document.getElementById('mdate').value;
+  const dateMeta = getFinalWorkingDate(d);
+  const month = dateMeta.finalDateObj.getMonth() + 1;
+  const dayOfMonth = dateMeta.finalDateObj.getDate();
+  document.getElementById('c-days').textContent = days.toLocaleString('ko-KR') + '일(' + month + '/' + dayOfMonth + ')';
+} else {
   document.getElementById('c-days').textContent = days.toLocaleString('ko-KR') + '일';
+}
   document.getElementById('res').classList.add('show');
 }
 
