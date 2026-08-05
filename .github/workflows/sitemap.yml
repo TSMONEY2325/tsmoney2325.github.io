@@ -1,0 +1,48 @@
+name: Generate Sitemap Automatically
+
+on:
+  push:
+    paths:
+      - 'companies.txt' # companies.txt 파일이 수정/저장될 때만 자동으로 실행됩니다.
+  workflow_dispatch: # 필요시 수동으로 실행도 가능합니다.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Generate sitemap.xml
+        run: |
+          python -c "
+          import urllib.parse
+
+          with open('companies.txt', 'r', encoding='utf-8') as f:
+              companies = [line.strip() for line in f if line.strip()]
+
+          xml_content = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n'
+          xml_content += '<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n'
+          xml_content += '  <url>\n    <loc>https://tsmoney.kr/possible/</loc>\n    <priority>1.0</priority>\n  </url>\n'
+
+          for company in companies:
+              encoded_co = urllib.parse.quote(company)
+              xml_content += f'  <url>\n    <loc>https://tsmoney.kr/possible/?co={encoded_co}</loc>\n    <priority>0.8</priority>\n  </url>\n'
+
+          xml_content += '</urlset>'
+
+          with open('sitemap.xml', 'w', encoding='utf-8') as f:
+              f.write(xml_content)
+          "
+
+      - name: Commit and Push sitemap.xml
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add sitemap.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update sitemap.xml from companies.txt" && git push)
