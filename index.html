@@ -134,6 +134,7 @@ h1 em{font-style:normal;color:var(--al)}
 .si:last-child{border-bottom:none}
 .si:hover{background:var(--gp)}
 .sico{width:36px;height:36px;flex-shrink:0;background:var(--g);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.sth{width:84px;height:44px;flex-shrink:0;object-fit:cover;border-radius:8px;border:1px solid var(--st);display:block}
 .sn{font-size:13px;font-weight:600;color:var(--text);margin-bottom:1px}
 .sd{font-size:11px;color:var(--g4);line-height:1.4}
 .sbg{margin-left:auto;flex-shrink:0;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px}
@@ -321,28 +322,39 @@ footer{background:#06100E;padding:36px 5vw 28px}
     <div class="pt">제공 서비스</div>
     <div class="slist">
       <a class="si" href="#services">
-        <div class="sico">📄</div>
+        <img class="sth" src="/assets/thumb-main.png" width="84" height="44" alt="전자어음 할인업체 태성투자대부">
         <div>
           <div class="sn">전자어음할인</div>
-          <div class="sd">상거래 대금의 전자어음 현금화 · 당일입금 · 무료금리조회</div>
+          <div class="sd">상거래 대금의 전자어음 현금화 · 당일입금</div>
         </div>
-        <span class="sbg main-badge">메인</span>
       </a>
-      <a class="si" href="#biz-services">
-        <div class="sico">🏦</div>
+      <a class="si" href="/calculator/">
+        <img class="sth" src="/assets/thumb-calculator.png" width="84" height="44" alt="전자어음할인 수수료 계산기">
         <div>
-          <div class="sn">잔고증명 대행</div>
-          <div class="sd">입찰 · 허가 · M&A 목적 잔액증명 발급</div>
+          <div class="sn">수수료 계산기</div>
+          <div class="sd">할인료 · 실수령액 즉시 계산</div>
         </div>
-        <span class="sbg sub-badge">기업금융</span>
       </a>
-      <a class="si" href="#biz-services">
-        <div class="sico">💰</div>
+      <a class="si" href="/possible/">
+        <img class="sth" src="/assets/thumb-possible.png" width="84" height="44" alt="전자어음할인 가능한 발행 기업사 목록">
         <div>
-          <div class="sn">자금조성 대행</div>
-          <div class="sd">연말결산 · PF증거금 · 법인예치</div>
+          <div class="sn">전자어음할인 가능 목록</div>
+          <div class="sd">발행사별 할인 가능 여부 조회</div>
         </div>
-        <span class="sbg sub-badge">기업금융</span>
+      </a>
+      <a class="si" href="/corporate/">
+        <img class="sth" src="/assets/thumb-corporate.png" width="84" height="44" alt="잔고증명 자금예치 대행">
+        <div>
+          <div class="sn">잔고증명 · 자금조성</div>
+          <div class="sd">입찰 · 허가 · M&A · 연말결산 · PF증거금</div>
+        </div>
+      </a>
+      <a class="si" href="/news/">
+        <img class="sth" src="/assets/thumb-news.png" width="84" height="44" alt="전자어음 최신뉴스">
+        <div>
+          <div class="sn">전자어음 최신 뉴스</div>
+          <div class="sd">시장 동향 · 제도 변화</div>
+        </div>
       </a>
     </div>
 
@@ -365,32 +377,6 @@ footer{background:#06100E;padding:36px 5vw 28px}
     <div class="stat"><div class="stn">전국</div><div class="stl">즉시 방문 가능</div></div>
   </div>
 </div>
-
-<!-- 서비스 바로가기 -->
-<style>
-.quick{padding:48px 5vw 8px}.quick .wrap{max-width:1100px;margin:0 auto}
-.quick h2{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--g);margin-bottom:18px}
-.qgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;list-style:none}
-.qgrid a{display:block;background:var(--w);border:1px solid var(--g2);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);transition:transform .15s,box-shadow .15s}
-.qgrid a:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(27,58,107,.15)}
-.qgrid img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
-.qgrid b{display:block;padding:10px 12px 2px;font-size:15px;color:var(--g)}
-.qgrid span{display:block;padding:0 12px 12px;font-size:12px;color:var(--g6);line-height:1.4}
-@media(max-width:860px){.qgrid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:480px){.qgrid{grid-template-columns:repeat(2,1fr);gap:10px}}
-</style>
-<section class="quick" id="quick" aria-label="서비스 바로가기">
-  <div class="wrap">
-    <h2>서비스 바로가기</h2>
-    <ul class="qgrid">
-      <li><a href="/#services"><img src="/assets/card-bill.png" width="600" height="600" alt="전자어음할인 전문 태성투자대부" loading="lazy"><b>전자어음할인</b><span>당일입금·신용조회 없음</span></a></li>
-      <li><a href="/calculator/"><img src="/assets/card-calculator.png" width="600" height="600" alt="전자어음할인 수수료 계산기" loading="lazy"><b>수수료 계산기</b><span>할인료·실수령액 즉시 계산</span></a></li>
-      <li><a href="/possible/"><img src="/assets/card-possible.png" width="600" height="600" alt="전자어음 할인 가능 발행사 목록" loading="lazy"><b>전자어음할인 가능 목록</b><span>발행사별 할인 가능 여부</span></a></li>
-      <li><a href="/corporate/"><img src="/assets/card-corporate.png" width="600" height="600" alt="잔고증명 및 자금조성 대행" loading="lazy"><b>잔고증명·자금조성</b><span>입찰·허가·M&A 잔고증명 대행</span></a></li>
-      <li><a href="/news/"><img src="/assets/card-news.png" width="600" height="600" alt="전자어음 최신 뉴스" loading="lazy"><b>전자어음 최신 뉴스</b><span>시장 동향·제도 변화</span></a></li>
-    </ul>
-  </div>
-</section>
 
 <!-- 전자어음할인 서비스 개념 블록 -->
 <section class="sec concept-sec" id="services">
