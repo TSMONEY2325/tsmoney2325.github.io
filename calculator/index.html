@@ -108,15 +108,10 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
   opacity: 1 !important;
 }
 
-/* 삼성 브라우저 환경에서 제조사 기본 서체가 간섭하지 못하도록 강제 무력화 */
-.samsung .rate-input {
-  font-family: sans-serif !important;
-}
 .rate-input:focus{border-color:var(--g);background:var(--w)}
-.ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1}
 .iw input[type=date]{width:100%;padding:12px 15px;border:1.5px solid var(--g2);border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text);background:var(--off);outline:none;transition:border-color .2s}
 .iw input[type=date]:focus{border-color:var(--g);background:var(--w)}
-.ov{position:absolute;top:0;left:0;right:44px;bottom:0;padding:12px 15px;font-size:16px;font-weight:600;color:var(--text);pointer-events:none;display:flex;align-items:center;overflow:hidden}
+.ov{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-feature-settings:"tnum" 1,"lnum" 1;position:absolute;top:0;left:0;right:44px;bottom:0;padding:12px 15px;font-size:16px;font-weight:600;color:var(--text);pointer-events:none;display:flex;align-items:center;overflow:hidden}
 .unit{position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:var(--g4);pointer-events:none}
 .fh{font-size:11px;color:var(--g4);margin-top:3px}
 .fh.err{color:#E24B4A}
@@ -168,7 +163,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
   <a class="logo" href="/"><div class="logo-mark"><img src="/assets/logo.jpg" alt="태성투자대부 로고" style="width:42px;height:42px;object-fit:contain;display:block;"></div><span class="logo-text"><span class="logo-name">태성투자대부</span><span class="logo-reg">대부업 2019-서울중구-0048</span></span></a>
   <ul class="nav-links">
     <li><a href="/bill-discount/">📑 전자어음할인</a></li>
-    <li><a href="/culator/" class="on">📉 수수료 계산기</a></li>
+    <li><a href="/calculator/" class="on">📉 수수료 계산기</a></li>
     <li><a href="/possible/">📋 할인 가능 목록</a></li>
     <li><a href="/corporate/">🏢 기업금융</a></li>
     <li><a href="/news/">📰 전자어음 뉴스</a></li>
@@ -180,7 +175,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
 </nav>
 <div class="mob" id="mob">
   <a href="/bill-discount/">📑 전자어음할인</a>
-  <a href="/culator/">📉 수수료 계산기</a>
+  <a href="/calculator/">📉 수수료 계산기</a>
   <a href="/possible/">📋 할인 가능 목록</a>
   <a href="/corporate/">🏢 기업금융</a>
   <a href="/news/">📰 전자어음 뉴스</a>
@@ -190,7 +185,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
 <div class="pw">
   <div class="ch">
     <div class="chi">
-      <div class="cey">Free culator</div>
+      <div class="cey">Free calculator</div>
       <h1>전자어음할인<br><em>수수료 계산기</em></h1>
       <p>어음금액·할인율·만기일만 입력하면 수수료와 실수령액을 즉시 계산합니다.</p>
     </div>
@@ -233,6 +228,7 @@ footer{background:#06100E;padding:36px 5vw 28px}
             <label>어음 만기일</label>
             <div class="iw"><input type="date" id="mdate" onchange="calcDate()"></div>
             <div class="fh" id="days-info">날짜를 선택하면 일수가 자동 계산됩니다</div>
+            <div class="fh err" id="holiday-warn" style="display:none"></div>
           </div>
         </div>
        
@@ -301,81 +297,131 @@ const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
 // =================================================================
-// 🎯 대한민국 공공데이터 오픈API 설정 및 실시간 캐시 엔진
+// 공휴일 판정: 고정 휴일(코드) + 변동 휴일(공공데이터 API, 연도별·하루 캐시)
 // =================================================================
-const SERVICE_KEY = '641a67d760367e3ce6589fa07515403c85276d20ded369575c25f24d2cbb91dd'; 
-let cachedHolidays = new Set(); 
-let lastFetchDate = '';         
+const SERVICE_KEY = '641a67d760367e3ce6589fa07515403c85276d20ded369575c25f24d2cbb91dd';
 
-// 백그라운드 비동기 API 데이터 수집 엔진 (브라우저 멈춤 방지)
-function fetchHolidays(year) {
-  const todayStr = new Date().toISOString().slice(0,10);
-  if (lastFetchDate === todayStr) return; 
+// 매년 날짜가 고정된 휴일: 신정, 삼일절, 근로자의 날, 어린이날, 현충일, 광복절, 개천절, 한글날, 성탄절
+// (설·추석·부처님오신날·대체공휴일·임시공휴일 등 해마다 바뀌는 날은 API가 담당)
+const FIXED_HOLIDAYS = ['01-01','03-01','05-01','05-05','06-06','08-15','10-03','10-09','12-25'];
 
-  const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${SERVICE_KEY}&solYear=${year}&_type=json&numOfRows=100`;
-  
+const CACHE_PREFIX = 'tsHolidays:';
+const RETRY_MS = 60000;          // API 실패 후 재시도 대기 시간
+const holidayByYear = {};        // { 2027: Set('2027-02-08', ...) }
+const holidayLoading = {};       // { 2027: true } 호출 진행 중
+const holidayFailedAt = {};      // { 2027: timestamp } 마지막 실패 시각
+
+function pad2(n){ return String(n).padStart(2,'0'); }
+// 한국(브라우저 로컬) 기준 YYYY-MM-DD
+function toDateStr(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
+// 'YYYY-MM-DD'를 로컬 자정 Date로 변환 (UTC 파싱으로 인한 날짜 어긋남 방지)
+function parseDate(str){ const a=str.split('-').map(Number); return new Date(a[0],a[1]-1,a[2]); }
+
+// 하루 캐시: 같은 날(한국 날짜)에는 저장된 값 사용, 자정이 지나면 다시 호출
+function readCache(year){
+  try{
+    const raw=localStorage.getItem(CACHE_PREFIX+year);
+    if(!raw) return false;
+    const c=JSON.parse(raw);
+    if(c.date!==toDateStr(new Date()) || !Array.isArray(c.list)) return false;
+    holidayByYear[year]=new Set(c.list);
+    return true;
+  }catch(e){ return false; }
+}
+function writeCache(year,list){
+  try{ localStorage.setItem(CACHE_PREFIX+year,JSON.stringify({date:toDateStr(new Date()),list:list})); }catch(e){}
+}
+
+function fetchHolidays(year){
+  if(holidayByYear[year] || holidayLoading[year]) return;
+  if(holidayFailedAt[year] && Date.now()-holidayFailedAt[year]<RETRY_MS) return;
+  if(readCache(year)) return;
+
+  holidayLoading[year]=true;
+  const url=`https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${SERVICE_KEY}&solYear=${year}&_type=json&numOfRows=100`;
+
   fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const items = data?.response?.body?.items?.item;
-      if (!items) return;
-      
-      if (lastFetchDate !== todayStr) cachedHolidays.clear();
-
-      const processItem = (item) => {
-        if (item.isHoliday === 'Y') {
-          const locdate = String(item.locdate);
-          const formattedDate = `${locdate.substring(0,4)}-${locdate.substring(4,6)}-${locdate.substring(6,8)}`;
-          cachedHolidays.add(formattedDate);
-        }
-      };
-
-      if (Array.isArray(items)) {
-        items.forEach(processItem);
-      } else {
-        processItem(items);
-      }
-      lastFetchDate = todayStr;
-      
-      // 국무회의 등 실시간 데이터 동기화 완료 즉시 화면 리렌더링
-      if (mode === 'date') {
-        calcDate(); 
-      }
+    .then(res=>{
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      return res.json();
     })
-    .catch(e => console.error("정부 API 통신 지연", e));
+    .then(data=>{
+      const header=data && data.response && data.response.header;
+      if(!header || header.resultCode!=='00') throw new Error('API 응답 오류');
+      const body=data.response.body;
+      const raw=body && body.items && body.items.item;
+      const items=!raw ? [] : (Array.isArray(raw) ? raw : [raw]);
+      const list=[];
+      items.forEach(item=>{
+        if(item.isHoliday==='Y'){
+          const s=String(item.locdate);
+          list.push(s.substring(0,4)+'-'+s.substring(4,6)+'-'+s.substring(6,8));
+        }
+      });
+      holidayByYear[year]=new Set(list);
+      delete holidayFailedAt[year];
+      writeCache(year,list);
+    })
+    .catch(e=>{
+      console.error('공휴일 API 호출 실패('+year+')',e);
+      holidayFailedAt[year]=Date.now();
+    })
+    .finally(()=>{
+      delete holidayLoading[year];
+      if(mode==='date') calcDate();   // 성공/실패 모두 화면 갱신
+    });
 }
 
-// 주말 및 공휴일 종합 판정 1·2차 필터
-function isBankHoliday(dateObj) {
-  const day = dateObj.getDay();
-  if (day === 0 || day === 6) return true; // 토요일, 일요일 무조건 필터링
-  
-  const yyyy = dateObj.getFullYear();
-  const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-  const dd = String(dateObj.getDate()).padStart(2, '0');
-  const dateStr = `${yyyy}-${mm}-${dd}`;
-  
-  return cachedHolidays.has(dateStr);
+// 만기일 계산에 필요한 연도: 12월이면 다음 해 연휴(1/1, 설날 등)로 밀릴 수 있으므로 함께 조회
+function neededYears(dateStr){
+  const a=dateStr.split('-').map(Number);
+  return a[1]===12 ? [a[0],a[0]+1] : [a[0]];
+}
+function ensureHolidays(dateStr){ neededYears(dateStr).forEach(fetchHolidays); }
+function recentlyFailed(y){ return !!holidayFailedAt[y] && Date.now()-holidayFailedAt[y]<RETRY_MS; }
+// 아직 불러오는 중(성공도 실패도 아님)인 연도가 있는지
+function holidaysPending(dateStr){ return neededYears(dateStr).some(y=>!holidayByYear[y] && !recentlyFailed(y)); }
+// API 데이터 없이 계산하게 된 연도가 있는지
+function holidaysFailed(dateStr){ return neededYears(dateStr).some(y=>!holidayByYear[y] && recentlyFailed(y)); }
+
+function updateHolidayWarn(dateStr){
+  const w=document.getElementById('holiday-warn');
+  if(!w) return;
+  if(holidaysFailed(dateStr)){
+    w.textContent='⚠️ 공휴일 정보를 불러오지 못해 주말과 고정 공휴일만 반영했습니다. 설·추석 연휴 등이 포함된 경우 일수가 다를 수 있으니 전화로 확인해 주세요.';
+    w.style.display='block';
+  }else{
+    w.style.display='none';
+  }
 }
 
-// 🔄 만기일 연쇄 휴일 검증 루프 (평일이 나올 때까지 멱살 잡고 전진)
-function getFinalWorkingDate(targetDateStr) {
-  let matDate = new Date(targetDateStr);
-  matDate.setHours(0,0,0,0);
-  let addedDays = 0;
+// 주말 및 공휴일(고정 + 변동) 판정
+function isBankHoliday(dateObj){
+  const day=dateObj.getDay();
+  if(day===0 || day===6) return true;
+  const mmdd=pad2(dateObj.getMonth()+1)+'-'+pad2(dateObj.getDate());
+  if(FIXED_HOLIDAYS.indexOf(mmdd)!==-1) return true;
+  const set=holidayByYear[dateObj.getFullYear()];
+  return set ? set.has(toDateStr(dateObj)) : false;
+}
 
-  while (isBankHoliday(matDate)) {
-    matDate.setDate(matDate.getDate() + 1);
+// 만기일이 휴일이면 다음 영업일까지 이동
+function getFinalWorkingDate(targetDateStr){
+  const matDate=parseDate(targetDateStr);
+  let addedDays=0;
+
+  while(isBankHoliday(matDate)){
+    matDate.setDate(matDate.getDate()+1);
     addedDays++;
   }
 
-  const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
-  
+  const weekDays=['일','월','화','수','목','금','토'];
+
   return {
-    isAdjusted: addedDays > 0,
+    isAdjusted: addedDays>0,
     originalDateStr: targetDateStr,
     finalDateObj: matDate,
-    finalDateStr: `${matDate.getFullYear()}-${String(matDate.getMonth()+1).padStart(2,'0')}-${String(matDate.getDate()).padStart(2,'0')}`,
+    finalDateStr: toDateStr(matDate),
     finalDayOfWeek: weekDays[matDate.getDay()],
     addedDays: addedDays
   };
@@ -426,62 +472,67 @@ function updateDays(){
   document.getElementById('days-ov').textContent=v>0?fmt(v):'';
 }
 
-// 🎯 사장님 맞춤형 핵심 타격 함수: 만기일 탭 활성화 시에만 정밀 가동
+// 만기일 탭에서 일수 계산 및 안내 문구 표시
 function calcDate(){
+  if(mode!=='date') return;
   const d=document.getElementById('mdate').value;
   if(!d) return;
+  const el=document.getElementById('days-info');
 
-  // 1. 조건부 활성화 검문: 만기일 탭이 아닐 때는 연산 자원 차단
-  if(mode !== 'date') return;
+  // 필요한 연도의 공휴일 확보 (캐시 우선, 없으면 API 호출). 도착 전에는 결과를 보여주지 않음
+  ensureHolidays(d);
+  if(holidaysPending(d)){
+    el.textContent='공휴일 정보를 확인하는 중입니다…';
+    el.className='fh';
+    document.getElementById('res').classList.remove('show');
+    return;
+  }
+  updateHolidayWarn(d);
 
-  // 2. 만기일 탭 활성화 순간 백그라운드 공휴일 동기화 엔진 가동
-  const matYear = new Date(d).getFullYear();
-  fetchHolidays(matYear);
-
-  const today = new Date();
+  const today=new Date();
   today.setHours(0,0,0,0);
 
-  // 3. 금융 휴일 보정 엔진 가동
-  const dateMeta = getFinalWorkingDate(d);
-  const finalMat = dateMeta.finalDateObj;
-  
-  const diff = Math.ceil((finalMat - today) / 86400000) + 1;
-  const el = document.getElementById('days-info');
+  const dateMeta=getFinalWorkingDate(d);
+  const finalMat=dateMeta.finalDateObj;
 
-  if(diff <= 0){
-    el.textContent = '⚠️ 만기일이 오늘보다 이전입니다';
-    el.className = 'fh err';
+  const diff=Math.ceil((finalMat-today)/86400000)+1;
+
+  if(diff<=0){
+    el.textContent='⚠️ 만기일이 오늘보다 이전입니다';
+    el.className='fh err';
     document.getElementById('res').classList.remove('show');
     return;
   }
 
-  // 4. 사장님 비즈니스 정석 맞춤 문구 분기 100% 매칭 출력
-  if (!dateMeta.isAdjusted) {
-    el.textContent = `선택하신 만기일(${dateMeta.originalDateStr})은 오늘부터 총 ${diff}일입니다.`;
-  } else {
-    el.textContent = `선택하신 만기일(${dateMeta.originalDateStr})은 휴일이어서 다음 은행 영업일인 ${dateMeta.finalDateStr}(${dateMeta.finalDayOfWeek}요일)로 ${dateMeta.addedDays}일이 가산되어 오늘부터 총 ${diff}일입니다.`;
+  if(!dateMeta.isAdjusted){
+    el.textContent=`선택하신 만기일(${dateMeta.originalDateStr})은 오늘부터 총 ${diff}일입니다.`;
+  }else{
+    el.textContent=`선택하신 만기일(${dateMeta.originalDateStr})은 휴일이어서 다음 은행 영업일인 ${dateMeta.finalDateStr}(${dateMeta.finalDayOfWeek}요일)로 ${dateMeta.addedDays}일이 가산되어 오늘부터 총 ${diff}일입니다.`;
   }
-  
-  el.className = 'fh';
+
+  el.className='fh';
   calc();
 }
 
 function getAmt(){return parseFloat(document.getElementById('amt-raw').value)||0}
 function getRate(){return parseFloat(document.getElementById('rate').value)||0}
 
-// 최종 수수료 연산에 들어갈 진짜 일수를 정산해 주는 일수 추출 엔진
+// 수수료 계산에 쓰는 일수 (만기일 모드는 휴일 보정 후 일수)
 function getDays(){
   if(mode==='days') return parseInt(document.getElementById('days-raw').value)||0;
-  
+
   const d=document.getElementById('mdate').value;
   if(!d) return 0;
-  
-  const today = new Date();
+
+  // 공휴일 데이터가 아직 없으면 계산하지 않음 (도착하면 calcDate가 다시 호출됨)
+  ensureHolidays(d);
+  if(holidaysPending(d)) return 0;
+
+  const today=new Date();
   today.setHours(0,0,0,0);
-  
-  // 만기일 모드일 때 보정 엔진 통과 데이터를 수수료 수식에 대입
-  const dateMeta = getFinalWorkingDate(d);
-  return Math.max(0, Math.ceil((dateMeta.finalDateObj - today) / 86400000) + 1);
+
+  const dateMeta=getFinalWorkingDate(d);
+  return Math.max(0, Math.ceil((dateMeta.finalDateObj-today)/86400000)+1);
 }
 
 function calc(){
@@ -513,7 +564,7 @@ const amt = getAmt(), rate = getRate(), days = getDays();
   document.getElementById('res').classList.add('show');
 }
 
-document.getElementById('mdate').min=new Date().toISOString().split('T')[0];
+document.getElementById('mdate').min=toDateStr(new Date());
 </script>
 </body>
 </html>
