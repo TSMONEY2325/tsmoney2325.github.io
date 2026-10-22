@@ -7,7 +7,8 @@
                               -> page-index.json
                               -> 목록 페이지(possible/index.html)의 가나다순 목록·기업 수
                               -> sitemap.xml (possible 항목)
-                              -> 신규 업체의 thumbnail.png (없을 때만 생성)
+                              -> 업체별 thumbnail.png (페이지 본문용 1200x675, 없을 때만 생성)
+                              -> 업체별 og.png (검색/공유 미리보기용 1200x1200 정사각형, 없을 때만 생성)
 
 사용법
   python tools/build_possible.py check                  # 데이터 점검만
@@ -191,7 +192,9 @@ TEMPLATE = """<!doctype html>
 <meta property="og:title" content="__TITLE__">
 <meta property="og:description" content="__DESC__">
 <meta property="og:url" content="__URL__">
-<meta property="og:image" content="__URL__thumbnail.png">
+<meta property="og:image" content="__URL__og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
 <style>
 :root{font-family:Pretendard,Apple SD Gothic Neo,Malgun Gothic,sans-serif;color:#16202e;background:#f5f7fa}
 *{box-sizing:border-box}body{margin:0}
@@ -347,6 +350,67 @@ def make_thumbnail(path: Path, name: str, font_path: str):
     img.save(path, "PNG", optimize=True)
 
 
+def make_og_square(path: Path, name: str, font_path: str):
+    """검색결과/공유 미리보기용 1200x1200 정사각형 이미지 (og.png)"""
+    from PIL import Image, ImageDraw, ImageFont
+
+    S, SS = 1200, 2  # 1200x1200 정사각형, SS: 2배 확대 후 축소
+
+    def font(size):
+        idx = 1 if "NotoSansCJK" in font_path else 0
+        try:
+            return ImageFont.truetype(font_path, int(size * SS), index=idx)
+        except Exception:
+            return ImageFont.truetype(font_path, int(size * SS))
+
+    def wrap(text, f, max_w):
+        lines, cur = [], ""
+        for ch in text:
+            if f.getlength(cur + ch) > max_w * SS and cur:
+                lines.append(cur)
+                cur = ch
+            else:
+                cur += ch
+        lines.append(cur)
+        return lines
+
+    img = Image.new("RGB", (S * SS, S * SS), "#f5f7fa")
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([40 * SS, 40 * SS, 1160 * SS, 1160 * SS], radius=40 * SS,
+                        fill="#ffffff", outline="#e2e8f0", width=3 * SS)
+    d.rounded_rectangle([40 * SS, 40 * SS, 1160 * SS, 340 * SS], radius=40 * SS,
+                        fill="#16202e", corners=(True, True, False, False))
+    d.text((600 * SS, 190 * SS), "전자어음할인 안내", font=font(80), fill="#ffffff", anchor="mm")
+
+    # 상호: 안전영역(좌우 120px 안쪽 = 960px) 안에서 최대한 크게, 길면 줄바꿈
+    max_w = 960
+    lines, size = None, None
+    for sz in range(200, 99, -8):
+        f = font(sz)
+        if f.getlength(name) <= max_w * SS:
+            lines, size = [name], sz
+            break
+    if lines is None:
+        for sz in range(170, 79, -8):
+            f = font(sz)
+            cand = wrap(name, f, max_w)
+            if len(cand) <= 3:
+                lines, size = cand, sz
+                break
+    if lines is None:
+        size = 80
+        lines = wrap(name, font(size), max_w)[:3]
+    f = font(size)
+    line_h = size * 1.25
+    top = 750 - (line_h * (len(lines) - 1)) / 2
+    for i, ln in enumerate(lines):
+        d.text((600 * SS, (top + i * line_h) * SS), ln, font=f, fill="#16202e", anchor="mm")
+
+    img = img.resize((S, S), Image.LANCZOS)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path, "PNG", optimize=True)
+
+
 # ---------------------------------------------------------------- 사이트맵
 def update_sitemap(sitemap: Path, companies: list[dict], today: str, touch: set[str], touch_all: bool,
                    touch_list: bool = False):
@@ -485,12 +549,16 @@ def write_pages(root: Path, targets: list[dict], font_path, make_thumbs: bool):
         folder.mkdir(parents=True, exist_ok=True)
         (folder / "index.html").write_text(render_page(c), encoding="utf-8")
         thumb = folder / "thumbnail.png"
-        if make_thumbs and not thumb.exists():
+        og = folder / "og.png"
+        if make_thumbs and (not thumb.exists() or not og.exists()):
             if font_path is None:
                 skipped += 1
                 continue
             try:
-                make_thumbnail(thumb, c["기업명"], font_path)
+                if not thumb.exists():
+                    make_thumbnail(thumb, c["기업명"], font_path)
+                if not og.exists():
+                    make_og_square(og, c["기업명"], font_path)
                 made_thumbs += 1
             except ModuleNotFoundError:
                 print("  ! Pillow가 없어 썸네일을 만들지 못했습니다: pip install pillow")
