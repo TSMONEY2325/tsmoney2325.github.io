@@ -251,7 +251,7 @@ def render_page(c: dict) -> str:
         "전자어음의 할인 가능 여부와 할인율 등의 조건은 발행사 및 금융시장의 현황에 따라 변동이 있습니다. "
         "어음할인 관련 자세한 상담이 필요하신 경우 전화 문의바랍니다."
     )
-    title = f"{name} 전자어음할인 안내"
+    title = f"{name} 전자어음할인 안내 | 태성"
     rows = "".join(
         f"<tr><th>{label}</th><td>{escape(c[key] or EMPTY)}</td></tr>"
         for label, key in [("기업명", "기업명"), ("대표자", "대표자"), ("기업구분", "기업구분"),
