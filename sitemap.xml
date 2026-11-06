@@ -4572,12 +4572,6 @@
 <priority>0.6</priority>
 </url>
 <url>
-<loc>https://tsmoney.kr/possible/(%EC%A3%BC)%ED%82%A4%ED%8C%8C%EC%9A%B4%EB%93%9C%EB%A6%AC/</loc>
-<lastmod>2026-11-06</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.6</priority>
-</url>
-<url>
 <loc>https://tsmoney.kr/possible/(%EC%A3%BC)%ED%83%80%EC%9D%B4%EA%B0%80/</loc>
 <lastmod>2026-11-06</lastmod>
 <changefreq>monthly</changefreq>
@@ -7873,6 +7867,12 @@
 </url>
 <url>
 <loc>https://tsmoney.kr/possible/%EC%97%90%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%98%A4%EC%85%98%ED%94%8C%EB%9E%9C%ED%8A%B8(%EC%A3%BC)/</loc>
+<lastmod>2026-11-06</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://tsmoney.kr/possible/%EC%97%90%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%82%A4%ED%8C%8C%EC%9A%B4%EB%93%9C%EB%A6%AC(%EC%A3%BC)/</loc>
 <lastmod>2026-11-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
