@@ -8,6 +8,7 @@
 | 파일 | 역할 |
 |---|---|
 | `tools/build_possible.py` | 생성기 본체 (`check` / `add` / `rebuild`) |
+| `tools/remove_companies.py` | 업체 삭제 도구 (부도·폐업·합병 업체 정리) |
 | `tools/companies.json` | **기준 데이터** (업체 정보의 유일한 원본) |
 | `tools/page-index.json` | 순서·기업명·주소 목록 (생성기가 매번 새로 씀) |
 | `tools/new_companies_template.csv` | 신규 업체 입력 양식 |
@@ -34,7 +35,7 @@
    - 사업자번호는 전체 번호를 넣어도 됩니다. 뒤 4자리가 자동으로 `****`로 바뀝니다.
 2. 실행합니다.
    ```
-   python build_possible.py add 신규업체.csv
+   python tools/build_possible.py add 신규업체.csv
    ```
    - 문제가 있으면 **아무 파일도 바꾸지 않고** 이유를 알려줍니다. (중복 업체, 설립일 형식, 알 수 없는 지역명, 사업자번호 형식)
    - 문제가 없으면 아래가 한 번에 처리됩니다.
@@ -45,6 +46,20 @@
 4. 서치어드바이저 '웹페이지 수집' 요청에 `tools/new_urls_날짜.txt`의 주소를 넣습니다.
    요청 한도는 공개되지 않았으니 하루 30~50개부터 시작해 늘려 가며, 1~2일 뒤 노출을 확인합니다.
 5. 필요하면 `rss.xml`에 신규 업체 항목을 추가해 RSS를 다시 제출합니다. (`pubDate`는 실제 추가한 날짜)
+
+## 업체 삭제 절차 (부도·폐업·합병)
+
+폴더나 사이트맵을 손으로 지우지 않습니다. 일부만 지우면 다음 `rebuild`에서 지운 업체가 다시 생기거나 사이트맵이 깨집니다.
+
+1. 저장소 맨 위에 `삭제업체.txt`를 만들고, 삭제할 업체 이름을 한 줄에 하나씩 적습니다. (이름은 목록 페이지나 `companies.json`에서 복사)
+2. 실행합니다.
+   ```
+   python tools/remove_companies.py 삭제업체.txt
+   ```
+   - 삭제 대상과 폴더 유무를 보여 주고 `y`를 입력해야 진행합니다. 이름이 하나라도 데이터에 없으면 아무것도 바꾸지 않고 멈춥니다.
+   - `companies.json`, 업체 폴더, 사이트맵 항목, `page-index.json`, 목록 페이지(가나다순 목록·기업 수)가 한 번에 정리됩니다. 사이트맵의 다른 항목 `lastmod`는 그대로입니다.
+3. `python tools/build_possible.py check`로 `목록 페이지: 업체 N개 일치`를 확인하고, GitHub Desktop에서 `Commit`과 `Push origin`을 합니다.
+4. `삭제업체.txt`는 올리지 않습니다.
 
 ## 자동으로 적용되는 규칙
 

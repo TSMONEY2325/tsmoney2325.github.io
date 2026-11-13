@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>/possible/ 업체 페이지 관리 (tsmoney.kr)</title>
+<style>*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#f5f7fa;color:#16202e;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;font-size:16px;line-height:1.8}
+.band{background:#16202e;color:#fff;padding:36px 20px 32px}.band .in{max-width:780px;margin:0 auto}
+.band h1{margin:0;font-size:28px;line-height:1.4;font-weight:700;letter-spacing:-.01em}
+main{max-width:780px;margin:24px auto 64px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px 34px 34px}
+h2{margin:1.9em 0 .7em;padding-top:1.1em;border-top:1px solid #e2e8f0;font-size:21px;line-height:1.5;font-weight:700;letter-spacing:-.01em}
+main>h2:first-of-type{border-top:0;padding-top:.4em;margin-top:1.3em}
+p{margin:.8em 0}ol,ul{margin:.8em 0;padding-left:1.5em}li{margin:.45em 0}li>ol,li>ul{margin:.4em 0}strong{font-weight:700}
+code{font-family:Consolas,"D2Coding","Malgun Gothic",monospace;font-size:.9em;background:#eef2f7;color:#1c2a3d;padding:.12em .38em;border-radius:4px}
+.code{position:relative;margin:.9em 0}
+pre{margin:0;background:#f1f5f9;border:1px solid #dbe3ec;border-radius:6px;padding:15px 18px;overflow-x:auto;line-height:1.65}
+pre code{background:none;padding:0;font-size:14px;color:#16202e;white-space:pre}
+.copy{position:absolute;top:8px;right:8px;font:13px/1 Pretendard,"Malgun Gothic",sans-serif;color:#16202e;background:#fff;border:1px solid #c5cfdb;border-radius:5px;padding:6px 11px;cursor:pointer}
+.copy:hover{background:#eef2f7}.copy:focus-visible{outline:2px solid #1a56c4;outline-offset:2px}
+.tw{overflow-x:auto;margin:1em 0}table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.6}
+th{background:#f1f5f9;text-align:left;font-weight:700;padding:10px 12px;border-bottom:2px solid #16202e;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid #e2e8f0;vertical-align:top}td code{word-break:break-all}
+@media (max-width:640px){th,td{padding:9px 8px}td:first-child{width:50%}.band{padding:26px 16px 22px}.band h1{font-size:22px}main{margin:14px 10px 40px;padding:6px 18px 24px}h2{font-size:19px}pre code{font-size:13px}}
+</style>
+</head>
+<body>
+<header class="band"><div class="in"><h1>/possible/ 업체 페이지 관리 (tsmoney.kr)</h1></div></header>
+<main>
+
+<p>업체 데이터 한 곳(<code>companies.json</code>)을 기준으로 개별 페이지, 썸네일, 목록 페이지, <code>page-index.json</code>, 사이트맵을 만드는 도구입니다.
+<strong>업체를 추가할 때는 항상 이 문서의 절차를 따릅니다.</strong> (손으로 폴더나 HTML을 만들거나 목록을 고치지 않습니다)</p>
+<h2>파일 구성</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>파일</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tools/build_possible.py</code></td>
+<td>생성기 본체 (<code>check</code> / <code>add</code> / <code>rebuild</code>)</td>
+</tr>
+<tr>
+<td><code>tools/remove_companies.py</code></td>
+<td>업체 삭제 도구 (부도·폐업·합병 업체 정리)</td>
+</tr>
+<tr>
+<td><code>tools/companies.json</code></td>
+<td><strong>기준 데이터</strong> (업체 정보의 유일한 원본)</td>
+</tr>
+<tr>
+<td><code>tools/page-index.json</code></td>
+<td>순서·기업명·주소 목록 (생성기가 매번 새로 씀)</td>
+</tr>
+<tr>
+<td><code>tools/new_companies_template.csv</code></td>
+<td>신규 업체 입력 양식</td>
+</tr>
+<tr>
+<td><code>possible/&lt;기업명&gt;/index.html</code></td>
+<td>업체 페이지 (생성기가 만듦)</td>
+</tr>
+<tr>
+<td><code>possible/&lt;기업명&gt;/thumbnail.png</code></td>
+<td>대표 이미지 (없을 때만 생성, 기존 것은 건드리지 않음)</td>
+</tr>
+<tr>
+<td><code>possible/index.html</code></td>
+<td>목록 페이지 (가나다순 목록과 기업 수만 생성기가 갱신)</td>
+</tr>
+<tr>
+<td><code>sitemap.xml</code></td>
+<td>possible 항목은 생성기가 갱신, 나머지 항목은 그대로 유지</td>
+</tr>
+</tbody>
+</table></div>
+<p>준비물: Python 3, 썸네일용 <code>pip install pillow</code>, 한글 폰트(없으면 <code>--font 폰트경로</code>).</p>
+<h2>작업 전에</h2>
+<ol>
+<li>GitHub Desktop을 열고 위쪽 <code>Fetch origin</code>을 누릅니다. <code>Pull origin</code>이 보이면 눌러서 최신 상태로 맞춥니다.</li>
+<li>명령 창을 엽니다. GitHub Desktop 메뉴 <code>Repository</code> → <code>Show in Explorer</code>로 저장소 폴더를 열고,
+위쪽 주소창을 클릭해 <code>cmd</code>를 입력한 뒤 Enter를 누릅니다. 아래 명령은 모두 이 창에서 입력합니다.</li>
+</ol>
+<h2>새 업체 추가 절차</h2>
+<ol>
+<li><code>tools/new_companies_template.csv</code>를 복사해 저장소 맨 위(<code>tools</code> 폴더와 같은 자리)에 <code>신규업체.csv</code>로 저장하고 업체 행을 채웁니다.
+(엑셀에서는 <code>CSV (쉼표로 분리)</code>든 <code>CSV UTF-8</code>이든 상관없이 저장하면 됩니다. 한글 인코딩은 자동으로 판별합니다. 예시 행은 지우세요)
+<ul>
+<li>열: <code>기업명, 대표자, 기업구분, 업종, 설립일, 주소, 사업자번호</code></li>
+<li>설립일은 <code>1986년 3월 25일</code> 형식, 모르는 값은 비워 둡니다. (페이지에는 <code>-</code>로 표시)</li>
+<li>주소 앞 지역명은 줄임말(서울, 경기, 경남 등)이어도 됩니다. 자동으로 전체 표기로 바뀝니다.</li>
+<li>사업자번호는 전체 번호를 넣어도 됩니다. 뒤 4자리가 자동으로 <code>****</code>로 바뀝니다.</li>
+</ul>
+</li>
+<li>실행합니다.<div class="code"><button class="copy" type="button">복사</button><pre><code>python tools/build_possible.py add 신규업체.csv
+</code></pre></div>
+<ul>
+<li>문제가 있으면 <strong>아무 파일도 바꾸지 않고</strong> 이유를 알려줍니다. (중복 업체, 설립일 형식, 알 수 없는 지역명, 사업자번호 형식)</li>
+<li>문제가 없으면 아래가 한 번에 처리됩니다.
+<code>companies.json</code> 갱신 → 업체 페이지·썸네일 생성 → <strong>목록 페이지(가나다순 목록, 기업 수) 갱신</strong> →
+<code>page-index.json</code>·<code>sitemap.xml</code> 갱신 → 수집요청용 주소 목록 <code>tools/new_urls_날짜.txt</code> 생성</li>
+</ul>
+</li>
+<li>GitHub Desktop을 열면 왼쪽 <code>Changes</code>에 바뀐 파일이 나옵니다. <code>new_urls_날짜.txt</code>와 <code>신규업체.csv</code>는 체크를 풀고,
+왼쪽 아래 칸에 &quot;업체 추가&quot;라고 적어 <code>Commit to main</code>을 누른 뒤 위쪽 <code>Push origin</code>을 누릅니다. (몇 분 뒤 사이트에 반영됩니다)</li>
+<li>서치어드바이저 '웹페이지 수집' 요청에 <code>tools/new_urls_날짜.txt</code>의 주소를 넣습니다.
+요청 한도는 공개되지 않았으니 하루 30~50개부터 시작해 늘려 가며, 1~2일 뒤 노출을 확인합니다.</li>
+<li>필요하면 <code>rss.xml</code>에 신규 업체 항목을 추가해 RSS를 다시 제출합니다. (<code>pubDate</code>는 실제 추가한 날짜)</li>
+</ol>
+<h2>업체 삭제 절차 (부도·폐업·합병)</h2>
+<p>폴더나 사이트맵을 손으로 지우지 않습니다. 일부만 지우면 다음 <code>rebuild</code>에서 지운 업체가 다시 생기거나 사이트맵이 깨집니다.</p>
+<ol>
+<li>저장소 맨 위에 <code>삭제업체.txt</code>를 만들고, 삭제할 업체 이름을 한 줄에 하나씩 적습니다. (이름은 목록 페이지나 <code>companies.json</code>에서 복사)</li>
+<li>실행합니다.<div class="code"><button class="copy" type="button">복사</button><pre><code>python tools/remove_companies.py 삭제업체.txt
+</code></pre></div>
+<ul>
+<li>삭제 대상과 폴더 유무를 보여 주고 <code>y</code>를 입력해야 진행합니다. 이름이 하나라도 데이터에 없으면 아무것도 바꾸지 않고 멈춥니다.</li>
+<li><code>companies.json</code>, 업체 폴더, 사이트맵 항목, <code>page-index.json</code>, 목록 페이지(가나다순 목록·기업 수)가 한 번에 정리됩니다. 사이트맵의 다른 항목 <code>lastmod</code>는 그대로입니다.</li>
+</ul>
+</li>
+<li><code>python tools/build_possible.py check</code>로 <code>목록 페이지: 업체 N개 일치</code>를 확인하고, GitHub Desktop에서 <code>Commit</code>과 <code>Push origin</code>을 합니다.</li>
+<li><code>삭제업체.txt</code>는 올리지 않습니다.</li>
+</ol>
+<h2>자동으로 적용되는 규칙</h2>
+<ul>
+<li>지역: 주소 맨 앞을 아래 16개 전체 표기로 통일
+서울특별시, 전남광주통합특별시, 부산광역시, 대구광역시, 인천광역시, 대전광역시, 울산광역시, 세종특별자치시,
+경기도, 강원특별자치도, 충청북도, 충청남도, 전북특별자치도, 경상북도, 경상남도, 제주특별자치도
+(광주광역시·광주·전라남도·전남은 전남광주통합특별시로 바뀝니다)</li>
+<li>사업자번호: <code>XXX-XX-X****</code> 형태로 뒤 4자리를 가림</li>
+<li>빈 값: 페이지 표에 <code>-</code> 표시</li>
+<li>주소 규칙: 사이트맵·canonical·<code>url</code> 필드·목록 링크 모두 괄호를 그대로 쓰고 한글만 인코딩 (<code>/possible/(%EC%A3%BC)…/</code>)
+(목록 링크를 예전처럼 <code>%28 %29</code>로 쓰려면 <code>build_possible.py</code>의 <code>LIST_LINK_ENCODE_PARENS = True</code>)</li>
+<li>정렬: <code>companies.json</code>과 <code>page-index.json</code>은 기업명 가나다(유니코드) 순서</li>
+<li>목록 분류: <code>(주)</code>·<code>(유)</code> 같은 괄호 표기를 뺀 뒤 첫 글자의 초성(ㄲ→ㄱ 등)으로 분류, 한글이 아니면 '기타'. 그룹 안은 기업명 순서</li>
+<li>업체 페이지: 제목 <code>{기업명} 전자어음할인 안내 | 태성투자대부</code>,
+본문 소개 + 기업정보 표 + 하단 링크 3개(어음할인 총정리 <code>/bill-discount/</code>, 할인 수수료 계산기 <code>/calculator/</code>, 상담하기 <code>tel:02-999-2325</code>)</li>
+<li>썸네일: 1200x675, 흰 카드와 남색 머리띠, 큰 상호. 상호가 길면 글자를 줄이고 두 줄로 나눔</li>
+</ul>
+<h2>다른 명령</h2>
+<ul>
+<li>데이터 점검만: <code>python tools/build_possible.py check</code>  (목록 페이지가 데이터와 일치하는지도 알려줌)</li>
+<li>템플릿(문구·디자인)이나 <code>companies.json</code>을 고쳤을 때 전체 재생성: <code>python tools/build_possible.py rebuild</code>
+<ul>
+<li>모든 <code>index.html</code>과 목록 페이지를 다시 만들고 사이트맵의 possible 항목 <code>lastmod</code>를 오늘로 바꿉니다. 썸네일은 건드리지 않습니다.</li>
+<li>업체 페이지 템플릿은 <code>build_possible.py</code> 안의 <code>TEMPLATE</code>과 <code>render_page()</code>입니다.</li>
+</ul>
+</li>
+<li>썸네일 생성을 건너뛰려면 명령 뒤에 <code>--skip-thumbnails</code></li>
+<li>파일 위치가 다르면 <code>--root</code>, <code>--companies</code>, <code>--page-index</code>, <code>--sitemap</code>, <code>--list-page</code> 옵션으로 지정</li>
+</ul>
+<h2>주의</h2>
+<ul>
+<li><code>companies.json</code>은 직접 고쳐도 되지만, 고친 뒤에는 <code>rebuild</code>를 실행해야 페이지와 목록에 반영됩니다.</li>
+<li>목록 페이지는 가나다순 목록(<code>&lt;div id=&quot;cho-groups&quot;&gt;</code>)과 &quot;전체/총 N개 기업&quot; 문구만 바꿉니다.
+페이지 구조를 크게 바꿔서 이 위치를 찾지 못하면, 목록은 건드리지 않고 이유를 알려준 뒤 나머지 작업만 진행합니다.</li>
+<li><code>tools/</code> 폴더도 GitHub Pages로 공개되므로, 검색에 잡히지 않게 <code>robots.txt</code>에 <code>Disallow: /tools/</code>를 넣는 것을 권합니다.</li>
+<li>사업자번호 형식이 이상한 업체는 <code>check</code>에서 ⚠로 표시됩니다. 자동으로 고치지 않으니 직접 확인해서 <code>companies.json</code>을 수정한 뒤 <code>rebuild</code>하세요.</li>
+</ul>
+</main>
+<script>document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){var t=b.parentNode.querySelector('pre code').innerText.replace(/\n$/,'');var done=function(){b.textContent='복사됨';setTimeout(function(){b.textContent='복사'},1500)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fb(t,done)})}else{fb(t,done)}})});
+function fb(t,done){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(a)}</script>
+</body>
+</html>
